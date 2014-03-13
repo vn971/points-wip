@@ -1,0 +1,51 @@
+package net.pointsgame.db
+
+import net.liftweb.common.Loggable
+import net.liftweb.util.Props
+import org.h2.jdbcx.JdbcConnectionPool
+import org.squeryl.PrimitiveTypeMode._
+import org.squeryl.{ Session, SessionFactory }
+import net.liftweb.http.LiftRules
+
+object DBSetUp extends Loggable {
+
+	def setUp() {
+		val jdbcAddress = Props.get("jdbc.address").openOrThrowException("")
+		logger info "opening DB by address " + jdbcAddress
+		val connPool = JdbcConnectionPool.create(jdbcAddress, "", "")
+
+		LiftRules.unloadHooks.append { () =>
+			logger.info("disposing connection pool")
+			connPool.dispose()
+		}
+
+		SessionFactory.concreteFactory = Some(() =>
+			Session.create(
+				connPool.getConnection,
+				new org.squeryl.adapters.H2Adapter))
+	}
+
+	def createDB() {
+		try {
+			transaction {
+				DBLibrary.create
+			}
+		} catch {
+			case e: Exception =>
+				logger.warn("DB population failed. (Tables were already defined?)")
+		}
+	}
+
+	def dropDB() {
+		try {
+			transaction {
+				DBLibrary.drop
+			}
+		} catch {
+			case e: Exception =>
+				logger.warn("DB drop failed.")
+		}
+	}
+
+}
+

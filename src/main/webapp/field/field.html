@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title>won't be used</title>
+</head>
+<body class="lift:content_id=mainField">
+<div id="mainField" ondragstart="return false" ondrop="return false">
+	<head_merge>
+		<link data-lift="with-resource-id" href="/field/field.css" rel="stylesheet"
+				type="text/css"/>
+	</head_merge>
+
+	<div id="surroundings"></div>
+	<div id="connections"></div>
+	<div id="dots"></div>
+	<div data-lift="comet?type=Paper"></div>
+	<img id="grid" src="/img/grid.png" alt="grid"/>
+
+	<tail>
+		<script type="text/javascript">
+			var roomName = '1';
+			var fieldClickFunction = function(e) {
+				var x = Math.floor((e.pageX - this.offsetLeft - 4) / 20);
+				var y = Math.floor((e.pageY - this.offsetTop - 4) / 20);
+				$('#ajax-loader').isVisible = true;
+				$.ajax({
+					url : '/api/makemove/' + roomName + '/' + x + '/' + y,
+					timeout : 5000,
+					retryMax : 100
+				});
+			};
+			jQuery(document).ready(function() {
+				$("#mainField").click(fieldClickFunction);
+			});
+		</script>
+	</tail>
+</div>
+
+
+</body>
+</html>

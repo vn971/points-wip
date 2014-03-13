@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" -->
+          <!--"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta name="description" content="Игра Точки - Points game"/>
+	<meta name="keywords" content="точки, игра, онлайн, феодалы, городки"/>
+	<title data-lift="Menu.title">Игра Точки:</title>
+	<link rel="stylesheet" type="text/css" href="css/bluescreen.css"/>
+	<link rel="stylesheet" type="text/css" href="css/fancy-type.css"/>
+	<link data-lift="with-resource-id" rel="icon" type="image/x-icon" href="img/favicon.png"/>
+	<style type="text/css">
+.sidebar ul {
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px solid #ccc;
+}
+
+.edit_error_class {
+	display: block;
+	color: red;
+}
+
+.sidebar ul li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: 1px solid #ccc;
+	border-bottom: none;
+}
+
+.sidebar ul li a {
+	display: block;
+	padding: 3px;
+	text-indent: 30px;
+	text-decoration: none;
+}
+
+.sidebar ul li span {
+	display: block;
+	padding: 3px;
+	text-indent: 30px;
+	text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+	background-color: #eee;
+}
+
+.container #ajax-loader {
+	display: none;
+	margin-bottom: 0;
+	margin-left: 5px;
+}
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="column span-12 last">
+			<h1 class="alt">
+				Игра Точки <img alt="" id="ajax-loader" src="/img/ajax-loader.gif"/>
+			</h1>
+		</div>
+
+		<hr />
+
+		<div class="column span-6 colborder sidebar">
+			<hr class="space" />
+
+			<span class="lift:Menu.builder"></span>
+
+			<div class="lift:Msgs?showAll=true"></div>
+			<hr class="space" />
+		</div>
+
+		<div class="column span-17 last">
+			<div id="content">The main content will get bound here</div>
+		</div>
+	</div>
+
+	<script src="/classpath/jquery.js" type="text/javascript"></script>
+</body>
+</html>

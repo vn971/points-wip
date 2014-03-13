@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>NN</title>
+</head>
+
+<body class="lift:content_id=main">
+	<div id="main" data-lift="surround?with=header-footer;at=content">
+		<lift:head>
+			<style type="text/css">
+				#user_list {
+					overflow: auto;
+					min-width: 150px;
+					height: 100%;
+					font-size: 0.8em;
+				}
+				#user_list div{
+					height: 100%;
+				}
+				#roomGameList div {
+					min-height: 3em;
+				}
+				#main table tr td {
+					background-color: #eee;
+					resize: vertical;
+				}
+				#chat_messages{
+					/*height: 358px;*/
+					overflow: auto;
+				}
+			</style>
+		</lift:head>
+
+		<table width="1000px">
+			<tr>
+				<td id="roomGameList" width="100%">
+					<div>
+						<div>game 1</div>
+						<div>game 2</div>
+						<div>game 3</div>
+					</div>
+				</td>
+				<td rowspan="2" height="100%" valign="top">
+					<div data-lift="embed?what=/_templates/userList"></div>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">
+					<div data-lift="embed?what=/_templates/chat">
+					</div>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+</body>
+</html>

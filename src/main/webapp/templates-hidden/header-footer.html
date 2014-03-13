@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta name="description" content="Игра Точки"/>
+	<meta name="keywords" content="точки, игра, онлайн, феодалы, городки"/>
+	<title data-lift="Menu.title">Игра Точки:</title>
+	<link data-lift="with-resource-id" rel="icon" type="image/x-icon" href="/img/favicon.png"/>
+	<style type="text/css">
+
+		.edit_error_class {
+			display: block;
+			color: red;
+		}
+
+		.sidebar ul {
+			padding: 0;
+			margin: 0 1em 0 0;
+		}
+
+		.sidebar ul li {
+			/*list-style: none;*/
+			border: 1px solid #ccc;
+			border-bottom: none;
+		}
+
+		.sidebar ul li:last-child {
+			border-bottom: 1px solid #ccc;
+		}
+
+		.sidebar ul li * {
+			padding: 0.3em 2em 3px 3px;
+			display: block;
+			text-indent: 3px;
+			text-decoration: none;
+		}
+
+		.sidebar ul li a:hover {
+			background-color: #eee;
+		}
+
+		.sidebar {
+			float: left;
+			font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+			font-size: smaller;
+			/*margin-right: 10px;*/
+			/*padding-right: 24px;*/
+			/*margin-right: 25px;*/
+			/*border-right: 1px solid #ddd;*/
+			line-height: 1.5;
+			background: white;
+		}
+
+		#rightBar li a {
+			color: #06c;
+		}
+
+		#rightBar a:focus, a:hover {
+			color: #09f;
+		}
+
+		* {
+			font-family: "DejaVu Sans", Trebuchet, sans-serif;
+		}
+	</style>
+</head>
+<body>
+<div class="container-deleted">
+	<div class="alt" style="text-align: center">
+			<table width="100%" style="height: 1em; width: 100%">
+				<tr>
+					<td style="text-align: left">
+						Точки
+					</td>
+					<td>
+						<img alt="...loading..." id="ajax-loader"
+						     style="display: none; margin-bottom: 0; margin-left: 5px; max-height: 0.9em"
+						     src="../img/ajax-loader.gif"/>
+					</td>
+					<td style="text-align: right; width: 100%">
+						MyName
+					</td>
+				</tr>
+			</table>
+		<!--<img src="/img/pointsgame.net.logo.jpg" alt="" style="height=0.9em; width=0.9em"/>-->
+	</div>
+
+	<hr/>
+
+	<div id="rightBar" class="sidebar">
+		<!--<hr class="space"/>-->
+
+		<span data-lift="Menu.builder"></span>
+		<div>список игр...</div>
+		<div>список чатов</div>
+		<div>и прочей хрени :)</div>
+
+		<div data-lift="Msgs?showAll=true"></div>
+		<!--<hr class="space"/>-->
+	</div>
+
+	<div class="all">
+		<div id="content"> The main content will get bound here</div>
+	</div>
+
+	<hr/>
+	<div align="center" style="font-size: 0.8em;">
+		<span><a href="#">Настройки</a></span> |
+		<span><a href="#">Как играть?</a></span> |
+		<span><a href="#">FAQ</a></span> |
+
+		<span>
+			<label for="language">language:</label>
+			<select id="language">
+				<option value="ru">Русский</option>
+				<option value="en" disabled="disabled">English</option>
+				<option value="pl" disabled="disabled">Polski</option>
+				<option value="ua" disabled="disabled">Українська</option>
+			</select>
+		</span>
+	</div>
+
+</div>
+
+<script src="/classpath/jquery.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>NN - NN</title>
+</head>
+
+<body class="lift:content_id=main">
+	<div id="main" data-lift="surround?with=header-footer;at=content">
+		<head_merge>
+			<style type="text/css">
+				#user_list {
+					overflow: auto;
+					height: 222px;
+					background-color: #eee;
+					font-size: 0.8em;
+				}
+
+				#chat_messages {
+					height: 358px;
+					/*overflow: auto;*/
+				}
+				#td_toolbar {
+					width: 1em;
+					background-color: yellow;
+				}
+
+				#td_userlist, #td_chat {
+					background-color: #eee;
+					max-width: 25em;
+					resize: vertical;
+				}
+
+			</style>
+
+		</head_merge>
+
+
+		<table border="0">
+			<tr>
+				<td rowspan="2">
+					<div id="field" data-lift="embed?what=/field/field"></div>
+				</td>
+				<td id="td_toolbar" rowspan="2" valign="top">
+					<button onclick="document.getElementById('players').style.visibility = 'visible';">&gt;</button>
+					<button onclick="document.getElementById('players').style.visibility = 'hidden';">&lt;</button>
+					...
+				</td>
+
+				<td id="td_userlist" valign="top">
+					<div data-lift="embed?what=/_templates/userList" ></div>
+				</td>
+
+			</tr>
+			<tr>
+
+				<td id="td_chat" valign="top">
+					<div data-lift="embed?what=/_templates/chat">
+					</div>
+				</td>
+
+			</tr>
+		</table>
+
+	</div>
+</body>
+</html>

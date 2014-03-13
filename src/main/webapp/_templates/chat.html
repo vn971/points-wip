@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<body class="lift:content_id=chat">
+		<div id="chat">
+
+			<head_merge>
+				<style type="text/css">
+					#chat_messages {
+					background-color: #eee;
+					max-width: inherit;
+					overflow: auto;
+					}
+
+					#chat {
+					max-width: inherit;
+					}
+
+					#chat_messages .nick {
+					font-weight: bold;
+					}
+
+					#chat form {
+					max-width: inherit;
+					}
+
+					#chat form #chat_in {
+					width: 100%;
+					}
+
+					#chat #chatLines {
+					height: 100%;
+					vertical-align: top;
+					}
+
+					#chat #chatLines td {
+					max-width: 25em;
+					}
+				</style>
+			</head_merge>
+
+			<form data-lift="form.ajax">
+				<table>
+					<tr id="chatLines">
+						<td colspan="2">
+							<div id="chat_messages" data-lift="SimpleSnippets.specifyRoom">
+								<div data-lift="lift:comet?type=ChatComet" class="specifyRoom">
+									<div class="chatLine">
+										<span class="time"></span> <span class="nick"></span>: <span
+										class="content"></span>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td width="100%"><input data-lift="ChatIn" id="chat_in" /></td>
+						<td><input type="submit" value="ok" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

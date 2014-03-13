@@ -1,0 +1,271 @@
+<html>
+<head>
+<title></title>
+</head>
+<body class="lift:content_id=rules">
+<div id="rules" class="lift:surround?with=default;at=content">
+
+	<head_merge>
+		<style type="text/css">
+			#rules .therefore {
+			font-size: 5em;
+			}
+		</style>
+	</head_merge>
+
+	<h1>Правила игры</h1>
+<!-- 		<svg transform="translate(0 0)" shape-rendering="geometricPrecision" -->
+		<!-- <svg transform="translate(0 0)" shape-rendering="" -->
+		<svg transform="translate(0 0)" shape-rendering="crispEdges"
+		style="opacity: 0.6"
+			xmlns="http://www.w3.org/2000/svg">
+			<line y1="10" x1="0" style="stroke:rgb(128,128,128);stroke-width:2"
+				x2="100" y2="10"></line>
+			<line y1="30" x1="0" style="stroke:rgb(128,128,128);stroke-width:2"
+				x2="100" y2="30"></line>
+			<line y1="50" x1="0" style="stroke:rgb(128,128,128);stroke-width:2"
+				x2="100" y2="50"></line>
+			<line y1="70" x1="0" style="stroke:rgb(128,128,128);stroke-width:2"
+				x2="100" y2="70"></line>
+			<line y1="90" x1="0" style="stroke:rgb(128,128,128);stroke-width:2"
+				x2="100" y2="90"></line>
+			<line y1="110" x1="0" style="stroke:rgb(128,128,128);stroke-width:2"
+				x2="100" y2="110"></line>
+			<line y1="0" x1="10" style="stroke:rgb(128,128,128);stroke-width:2"
+				x2="10" y2="120"></line>
+			<line y1="0" x1="30" style="stroke:rgb(128,128,128);stroke-width:2"
+				x2="30" y2="120"></line>
+			<line y1="0" x1="50" style="stroke:rgb(128,128,128);stroke-width:2"
+				x2="50" y2="120"></line>
+			<line y1="0" x1="70" style="stroke:rgb(128,128,128);stroke-width:2"
+				x2="70" y2="120"></line>
+			<line y1="0" x1="90" style="stroke:rgb(128,128,128);stroke-width:2"
+				x2="90" y2="120"></line>
+		</svg>
+
+		<br />
+		Точки -- игра с простыми правилами, сложными комбинациями и красивыми
+	партиями.
+	<h2>1. Поле, игроки, ходы</h2>
+	Игра происходит на поле в клеточку фиксированного размера (10x10, 20x20,
+	30x30 и др).
+	<br /> Двое игроков ходят по очереди, ставя свои точки на пересечении
+	горизонтальных и вертикальных линий.
+	<table>
+		<tr>
+			<td>
+				<div data-lift="GameDrawer">
+					<game size-x="7" size-y="6"/>
+					<red x="1" y="2"/>
+					<blue x="1" y="3"/>
+					<red x="2" y="3"/>
+					<blue x="2" y="2"/>
+				</div>
+			</td>
+			<td class="therefore">⇨</td>
+			<td>
+				<div data-lift="GameDrawer">
+					<game size-x="7" size-y="6"/>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<h2>2. Окружения</h2>
+	Игроки могут проводить окружения через свои точки:
+	<table>
+		<tr>
+			<td>
+				<div data-lift="GameDrawer">
+					<game size-x="5" size-y="6"/>
+				</div>
+			</td>
+			<td class="therefore">⇨</td>
+			<td>
+				<div data-lift="GameDrawer">
+					<game size-x="5" size-y="6"/>
+				</div>
+			</td>
+		</tr>
+	</table>
+	На бумаге окружения рисуются вручную. На компьютере
+	окружения проводятся автоматически.
+	<br />
+
+	<h2>3. Цель игры, подсчёт результатов</h2>
+	<div>
+		Цель игры -- окружать точки соперника, не давая окружить свои
+		собственные. <br /> Побеждает игрок, который захватил больше точек
+		оппонента.<br /> <br />
+	</div>
+
+	<h2>4. Примеры, окончание партии</h2>
+	Итак, пока-что всё просто, даже слишком просто? Тогда давайте глянем
+	чуть более сложные примеры и рассмотрим как заканчивается игра.
+
+	<div>
+		<table>
+			<tr>
+				<td>
+					<div data-lift="GameDrawer">
+						<game size-x="5" size-y="6" />
+					</div>
+				</td>
+				<td class="therefore">⇨</td>
+				<td>
+					<div data-lift="GameDrawer">
+						<game size-x="5" size-y="6" />
+					</div>
+				</td>
+			</tr>
+		</table>
+		Пустая область:<br /> Точек оппонента в области нет. Окружение не
+		проводится.
+	</div>
+	<br />
+
+	<div>
+		<table>
+			<tr>
+				<td>
+					<div data-lift="GameDrawer">
+						<game size-x="5" size-y="6" />
+					</div>
+				</td>
+				<td class="therefore">⇨</td>
+				<td>
+					<div data-lift="GameDrawer">
+						<game size-x="5" size-y="6" />
+					</div>
+				</td>
+			</tr>
+		</table>
+		Приоритет своего хода:<br /> Оба могли бы окружить, но окружает тот,
+		чей был ход.
+	</div>
+
+	<div>
+		<table>
+			<tr>
+				<td>
+					<div data-lift="GameDrawer">
+						<game size-x="5" size-y="6" />
+					</div>
+				</td>
+				<td class="therefore">⇨</td>
+				<td>
+					<div data-lift="GameDrawer">
+						<game size-x="5" size-y="6" />
+					</div>
+				</td>
+			</tr>
+		</table>
+		Если оппонент ошибся:<br /> Оппонент поставил точку в пустую область,
+		но сам ничего не окружил. Он теряет свою точку и окружение проводится.
+	</div>
+
+	<div>
+		<br />
+		<div data-lift="GameDrawer">
+			<game size-x="5" size-y="6" />
+		</div>
+		<br /> Окружение в окружении. Счёт 4-0.
+	</div>
+
+	<div>
+		<br />
+		<div data-lift="GameDrawer">
+			<game size-x="5" size-y="6" />
+		</div>
+		<br /> Партия закончилась с одинаковым числом точек. Результат игры
+		-- ничья.
+	</div>
+
+	<div>
+		<br /> Если партию не прерывать, то она длится пока не закончится всё
+		свободное <br />пространство. Однако, её можно закончить и до этого:
+		<br />игрок имеет право отказаться от дальнейшей постановки точек. <br />
+		Примеры за красного игрока:
+		<table border="1">
+			<tr>
+				<td>здесь красный может <br />остановить игру, <br />счёт
+					будет 3-2 в его пользу
+				</td>
+				<td>здесь тоже можно<br />остановить игру,<br />у синего
+					будет<br />максимум 4 точки
+				</td>
+				<td>если остановить игру<br />сейчас, то красный<br />проиграет
+					1-4
+				</td>
+				<td>если остановить игру,<br />будет ничья
+				</td>
+				<td>игра ещё далека<br />до окончания:)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div data-lift="GameDrawer">
+						<game size-x="5" size-y="6" />
+					</div>
+				</td>
+				<td>
+					<div data-lift="GameDrawer">
+						<game size-x="5" size-y="6" />
+					</div>
+				</td>
+				<td>
+					<div data-lift="GameDrawer">
+						<game size-x="5" size-y="6" />
+					</div>
+				</td>
+				<td>
+					<div data-lift="GameDrawer">
+						<game size-x="5" size-y="6" />
+					</div>
+				</td>
+				<td>
+					<div data-lift="GameDrawer">
+						<game size-x="5" size-y="6" />
+					</div>
+				</td>
+			</tr>
+		</table>
+		<!-- А вот здесь отказываться от постановки точек не стоит, иначе синий
+			окружит:
+			<div>[]</div> -->
+	</div>
+
+	<div>
+		<h2>5. А что дальше ?</h2>
+
+		Если вы по-прежнему заинтересованы игрой, у вас есть желание
+		посмотреть примеры задач/партий, задать <br />вопрос или сыграть --
+		то вот что мы предлагаем:
+		<ul>
+			<li><a href="/play">Онлайн-канал</a>, на котором проще всего и
+				осудить идеи, и сыграть с компьютером или другим онлайн-игроком.
+				После регистрации или гостевого входа, зайдите на канал Help если у
+				вас вопрос, в любую понравившуюся комнату если вы хотите сыграть.</li>
+			<li><a href="/challenge">Раздел задач</a>, сгруппированый по
+				пяти уровням сложности. Пока-что достаточно примитивный, т.е. тыкать
+				прямо по полю для проверки своего решения нельзя. И недоступно
+				несколько ходов вглубь. Но, тем не менее, мы постарались собрать там
+				достаточно интересные задачи.</li>
+			<li>Наш <a href="http://pointsgame.net/site/">старый сайт</a>,
+				который давно не обновлялся и достаточно медленный, но тем не менее
+				имеет некоторую интересную информацию: историю турниров, архивы
+				партий, немного истории точек и прочего. Также, у нас ещё работает
+				старенький <a href="http://pointsgame.net/forum/">форум</a>, хоть и не
+				активный в последнее время.
+			</li>
+			<li><a href="/player-top">ТОП-лист</a> наших игроков здесь.:) Можно зайти в
+				инфо профессионала и посмотреть там список его партий. Правда, на
+				практике, вряд ли партии оттуда будут сразу просты и понятны --
+				например, почему точки не съедаются сразу, почему атака на
+				противника идёт издалека (а не впритык), почему в некоторых случаях
+				точки жертвуются, а не спасаются, и др.</li>
+		</ul>
+	</div>
+
+</div>
+</body>
+</html>
