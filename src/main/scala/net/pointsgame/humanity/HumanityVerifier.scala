@@ -22,8 +22,7 @@ object Numbers extends Loggable {
 }
 
 object Helper {
-	/** calculates bas^pow (mod m).  This is quick even for a large "pow".
-	 */
+	//	 calculates bas^pow (mod m).  This is quick even for a large "pow".
 	def longPower(bas: Int, pow: Int, mod: Int) = {
 		var result = 1
 		var bitmask = 1 // bitmask for pow

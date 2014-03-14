@@ -38,7 +38,6 @@ object DBLibrary extends Schema {
 
 	on(messages)(e => declare(
 		e.time is (indexed)
-		//e.content is dbType("varchar(300)")
 	))
 
 	val gameToFirstUser =

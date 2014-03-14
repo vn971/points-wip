@@ -13,7 +13,7 @@ case class Message(
 	time: Timestamp = DBLibrary.now()
 	) extends Loggable {
 
-	def shortTime = "%02d:%02d".format(time.getHours, time.getMinutes)
+	def shortTime = f"${time.getHours}%02d:${time.getMinutes}%02d"
 
 	//def shortTime = {
 	//	val joda = new DateTime(time.getTime).withZone(DateTimeZone.forID("Europe/Moscow"))

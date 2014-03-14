@@ -84,8 +84,8 @@ public interface SingleGameEngineInterface {
 
 		static boolean dotTypeIsIn(DotType element,
 				DotType... set) {
-			for (int i = 0; i < set.length; i++) {
-				if (set[i] == element) {
+			for (DotType aSet : set) {
+				if (aSet == element) {
 					return true;
 				}
 			}
