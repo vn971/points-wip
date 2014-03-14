@@ -4,10 +4,9 @@ import java.util
 import net.liftweb.common.Loggable
 import org.scalatest.Inside._
 import org.scalatest._
-import org.scalatest.matchers.ShouldMatchers
 import scala.collection.JavaConversions._
 
-class AiEngineTest extends FunSuite with Loggable with ShouldMatchers {
+class AiEngineTest extends FunSuite with Loggable {
 
 	case class Dot(x: Int, y: Int, red_? : Boolean)
 
@@ -65,10 +64,8 @@ class AiEngineTest extends FunSuite with Loggable with ShouldMatchers {
 		engine.makeMove(2, 1, red_? = true)
 		engine.makeMove(1, 2, red_? = true)
 		engine.makeMove(0, 1, red_? = true)
-		engine.redScore should be === 0
-		engine.blueScore should be === 0
-		//engine(1,1) should be === net.pointsgame.engine.Dot.emptyEatenByRed
-		Console println "surr emp"
+		assert(engine.redScore == 0)
+		assert(engine.blueScore == 0)
 	}
 
 	testGame(

@@ -3,22 +3,18 @@ package net.pointsgame.helpers
 import net.pointsgame.lift.model.PaperDrawing._
 import scala.xml._
 
-object CreateSvgGrid extends App {
+object CreateSvgGrid {
 
-	create(5, 6)
+	//	create(5, 6)
 
 	def create(sizeX: Int, sizeY: Int) {
 		val xml = paperLinesSvg(sizeX, sizeY)
 		XML.save(s"src/main/webapp/img/grid/howToCreate/$sizeX-$sizeY.svg", xml)
 	}
 
-	def paperLinesSvg(sizeX: Int, sizeY: Int) = {
+	private def paperLinesSvg(sizeX: Int, sizeY: Int) = {
 		val pixelSizeX = (sizeX - 1) * gridSquareWidth + offset * 2
 		val pixelSizeY = (sizeY - 1) * gridSquareWidth + offset * 2
-		//		val widthHeightStyle = {
-		//			"width: " + pixelSizeX + "px; height: " + pixelSizeY + "px;"
-		//			""
-		//		}
 		def pixel(i: Int) = surrPixel(i).toString
 		def horizontal(y: Int): Node =
 				<line

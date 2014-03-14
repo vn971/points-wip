@@ -1,3 +1,6 @@
+import sbtassembly.Plugin.AssemblyKeys._
+import com.typesafe.sbteclipse.core.EclipsePlugin.EclipseKeys
+import spray.revolver.RevolverPlugin.Revolver
 
 name := "PointsgameServer"
 
@@ -12,22 +15,45 @@ description := "Web server for the game Points"
 
 scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
 
+transitiveClassifiers in Global := Seq(Artifact.SourceClassifier) // don't download javadoc
 
-seq(com.earldouglas.xsbtwebplugin.WebPlugin.webSettings :_*)
-
-Keys.`package` <<= (Keys.`package` in Compile) dependsOn (test in Test)
-
-scanDirectories in Compile := Nil // using 0.2.4+ of the sbt web plugin
-
-port in container.Configuration := 4141
+EclipseKeys.withSource := true // download sources for eclipse
 
 
-fork := true
+
+sbtassembly.Plugin.assemblySettings
+
+jarName in assembly := "pointsgame.jar"
+
+assembly <<= assembly dependsOn (test in Test)
+
+resourceGenerators in Compile <+= (resourceManaged, baseDirectory) map
+		{ (managedBase, base) =>
+			val webappBase = base / "src" / "main" / "webapp"
+			for {
+				(from, to) <- webappBase ** "*" x rebase(webappBase, managedBase /
+						"main" / "webapp")
+			} yield {
+				Sync.copy(from, to)
+				to
+			}
+		}
+
+
+Revolver.settings.settings
+
+// Revolver.enableDebugging(port = 5005, suspend = false)
+
+
+fork in Test := true
 
 
 resolvers ++= Seq(
 	"Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
 )
+
+// uncomment if you don't want to use your internet connection for SNAPSHOT updates:
+// offline:=true
 
 //val liftVersion = "2.5.1"
 val liftVersion = "3.0-SNAPSHOT"
@@ -40,8 +66,8 @@ libraryDependencies ++= Seq(
 	"net.liftweb" %% "lift-json" % liftVersion,
 	"net.liftweb" %% "lift-util" % liftVersion,
 	"net.liftweb" %% "lift-webkit" % liftVersion,
-	"org.eclipse.jetty" % "jetty-webapp" % "8.1.7.v20120910" % "container,test",
-	"org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container,test" artifacts Artifact("javax.servlet", "jar", "jar"),
+	"org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115",
+//	"org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" artifacts Artifact("javax.servlet", "jar", "jar"),
 	"org.squeryl" %% "squeryl" % "0.9.5-6",
-	"org.scalatest" %% "scalatest" % "1.9.1" % "test"
+	"org.scalatest" %% "scalatest" % "2.1.0" % "test"
 )

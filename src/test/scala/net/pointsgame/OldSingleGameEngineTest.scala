@@ -3,14 +3,13 @@ package net.pointsgame
 import java.util
 import net.liftweb.common.Loggable
 import org.scalatest._
-import org.scalatest.matchers.ShouldMatchers
 import ru.narod.vn91.pointsop.gameEngine.SingleGameEngine
 import ru.narod.vn91.pointsop.gameEngine.SingleGameEngineInterface.MoveResult
 import ru.narod.vn91.pointsop.gameEngine.SingleGameEngineInterface.MoveResult._
 import scala.collection.JavaConversions._
 
 
-class OldSingleGameEngineTest extends FunSuite with Loggable with ShouldMatchers {
+class OldSingleGameEngineTest extends FunSuite with Loggable {
 
 	case class Dot(x: Int, y: Int, red_? : Boolean)
 
@@ -96,19 +95,19 @@ class OldSingleGameEngineTest extends FunSuite with Loggable with ShouldMatchers
 		engine.makeMove(1, 0, true)
 		engine.makeMove(2, 1, true)
 		engine.makeMove(1, 2, true)
-		engine.getSurroundings.size() should be === 0
+		assert(engine.getSurroundings.size() == 0)
 		engine.makeMove(0, 1, true)
-		engine.getSurroundings.size() should be === 0
+		assert(engine.getSurroundings.size() == 0)
 
 		engine.makeMove(11, 11, true)
 		engine.makeMove(11, 10, false)
 		engine.makeMove(12, 11, false)
 		engine.makeMove(11, 12, false)
-		engine.getSurroundings.size() should be === 0
+		assert(engine.getSurroundings.size() == 0)
 		engine.makeMove(10, 11, false)
-		engine.getSurroundings.size() should be === 1
+		assert(engine.getSurroundings.size() == 1)
 		engine.makeMove(1, 1, false)
-		engine.getSurroundings.size() should be === 1
+		assert(engine.getSurroundings.size() == 1)
 	}
 
 	test("ctrl2") {
@@ -123,18 +122,16 @@ class OldSingleGameEngineTest extends FunSuite with Loggable with ShouldMatchers
 		engine.makeMove(1, 10, true)
 		engine.makeMove(3, 3, false)
 
-		engine.getSurroundings.size() should be === 0
+		assert(engine.getSurroundings.size() == 0)
 		engine.makeMove(11, 3, true)
-		engine.getSurroundings.size() should be === 1
+		assert(engine.getSurroundings.size() == 1)
 
 		engine.makeMove(10, 3, false)
 
-		engine.getSurroundings.size() should be === 1
+		assert(engine.getSurroundings.size() == 1)
 		engine.makeMove(3, 2, true)
-		engine.getSurroundings.size() should be === 2
+		assert(engine.getSurroundings.size() == 2)
 		assert(engine.getSurroundings.get(0) != engine.getSurroundings.get(1))
-		Console println "surr0: "+engine.getSurroundings.get(0).path
-		Console println "surr1: "+engine.getSurroundings.get(1).path
 	}
 
 	testGame(

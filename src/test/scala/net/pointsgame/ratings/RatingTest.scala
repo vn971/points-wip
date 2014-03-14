@@ -6,19 +6,18 @@ import net.pointsgame.db.DBLibrary._
 import net.pointsgame.db._
 import net.pointsgame.ratings.RatingConstants._
 import org.scalatest._
-import org.scalatest.matchers.ShouldMatchers
 import org.squeryl.PrimitiveTypeMode._
 
-class RatingTest extends FunSuite with Loggable with ShouldMatchers with BeforeAndAfterAll {
+class RatingTest extends FunSuite with Loggable with BeforeAndAfterAll {
 
 	test("probability simple check") {
 		// 0.666
-		Ratings.probabilityToWin(1000L, 500L, 1.0) should be > 0.666
-		Ratings.probabilityToWin(1000L, 500L, 1.0) should be < 0.7
+		assert(Ratings.probabilityToWin(1000L, 500L, 1.0) > 0.666)
+		assert(Ratings.probabilityToWin(1000L, 500L, 1.0) < 0.7)
 
 		// 0.333
-		Ratings.probabilityToLose(1000L, 500L, 1.0) should be > 0.333
-		Ratings.probabilityToLose(1000L, 500L, 1.0) should be < 0.4
+		assert(Ratings.probabilityToLose(1000L, 500L, 1.0) > 0.333)
+		assert(Ratings.probabilityToLose(1000L, 500L, 1.0) < 0.4)
 	}
 
 	override def beforeAll() {
@@ -76,7 +75,7 @@ class RatingTest extends FunSuite with Loggable with ShouldMatchers with BeforeA
 			Ratings.refineRating("u03")
 
 			val ratingNew = transaction(users.get("u03").rating)
-			ratingNew should be > ratingBefore
+			assert(ratingNew > ratingBefore)
 			ratingBefore = ratingNew
 		}
 	}
@@ -92,8 +91,8 @@ class RatingTest extends FunSuite with Loggable with ShouldMatchers with BeforeA
 	ignore("ratings don't grow too fast") {
 		logger debug "u04: " + getRating("u04")
 		Ratings.refineRating("u03")
-		getRating("u03") should be > defaultRating * 3
-		getRating("u03") should be < defaultRating * 120
+		assert(getRating("u03") > defaultRating * 3)
+		assert(getRating("u03") < defaultRating * 120)
 	}
 
 	ignore("ratings don't differ much after 1 game") {
@@ -108,11 +107,11 @@ class RatingTest extends FunSuite with Loggable with ShouldMatchers with BeforeA
 			Ratings.refineRating("u05")
 			Ratings.refineRating("u06")
 		}
-		getRating("u05") should be > defaultRating / 2
-		getRating("u05") should be < defaultRating * 2
+		assert(getRating("u05") > defaultRating / 2)
+		assert(getRating("u05") < defaultRating * 2)
 
-		getRating("u06") should be > defaultRating / 2
-		getRating("u06") should be < defaultRating * 2
+		assert(getRating("u06") > defaultRating / 2)
+		assert(getRating("u06") < defaultRating * 2)
 	}
 
 }

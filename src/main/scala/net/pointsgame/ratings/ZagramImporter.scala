@@ -8,7 +8,7 @@ import net.pointsgame.db.DBLibrary._
 import net.pointsgame.db._
 import org.squeryl.PrimitiveTypeMode._
 
-object ZagramImporter extends App with Loggable {
+object ZagramImporter extends Loggable {
 
 	def importGamesWithoutRatings() {
 		try {

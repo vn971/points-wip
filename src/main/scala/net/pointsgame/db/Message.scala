@@ -2,6 +2,7 @@ package net.pointsgame.db
 
 import java.sql.Timestamp
 import net.liftweb.common.Loggable
+import org.joda.time.{DateTimeZone, DateTime}
 import org.squeryl.PrimitiveTypeMode._
 import org.squeryl.annotations._
 
@@ -13,12 +14,10 @@ case class Message(
 	time: Timestamp = DBLibrary.now()
 	) extends Loggable {
 
-	def shortTime = f"${time.getHours}%02d:${time.getMinutes}%02d"
-
-	//def shortTime = {
-	//	val joda = new DateTime(time.getTime).withZone(DateTimeZone.forID("Europe/Moscow"))
-	//	"%02d:%02d".format(joda.getHourOfDay, joda.getMinuteOfHour)
-	//}
+	def shortTime = {
+		val dt = new DateTime(time.getTime).withZone(DateTimeZone.forID("Europe/Moscow"))
+		f"${dt.getHourOfDay}%02d:${dt.getMinuteOfHour}%02d"
+	}
 }
 
 object MessageFunctions extends Loggable {

@@ -1,17 +1,14 @@
 package net.pointsgame.humanity
 
-import org.scalatest.BeforeAndAfterAll
-import org.scalatest.FunSuite
-import org.scalatest.matchers.ShouldMatchers
-
-import net.pointsgame.humanity.Helper.{longPower => power}
 import net.liftweb.common.Loggable
+import net.pointsgame.humanity.Helper.{longPower => power}
 import net.pointsgame.humanity.Numbers.base
+import org.scalatest.FunSuite
 
-class HumanityTest extends FunSuite with Loggable with ShouldMatchers with BeforeAndAfterAll {
+
+class HumanityTest extends FunSuite with Loggable {
 	test("test") {
 		val verifierClass = HumanityVerifier.is
-		val timeStart = System.currentTimeMillis
 		val mod = verifierClass.mod
 		logger.info(s"mod=$mod")
 		var power = 1
