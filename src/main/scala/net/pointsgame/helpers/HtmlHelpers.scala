@@ -3,7 +3,7 @@ package net.pointsgame.helpers
 import net.liftweb.common.Loggable
 import net.liftweb.http.S
 import net.liftweb.util.BindHelpers._
-import scala.xml.NodeSeq
+import scala.xml._
 
 
 object HtmlHelpers extends Loggable {

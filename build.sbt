@@ -42,7 +42,8 @@ resourceGenerators in Compile <+= (resourceManaged, baseDirectory) map
 
 Revolver.settings.settings
 
-// Revolver.enableDebugging(port = 5005, suspend = false)
+//Revolver.enableDebugging(port = 5005, suspend = true)
+//Revolver.enableDebugging(port = 5005, suspend = false)
 
 
 fork in Test := true

@@ -1,2 +1,1 @@
-# jdbc.address=jdbc:h2:tcp://localhost/test
 jdbc.address=jdbc:h2:local-dev-database;AUTO_SERVER=TRUE;
