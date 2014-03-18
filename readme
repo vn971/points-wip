@@ -1,12 +1,12 @@
 A free server for the game of Points.
 
 It’s written in Scala language, using
-LiftWeb as a web framework,
+Liftweb as a web framework,
 SBT as a build tool,
 akka as the main actor system (http://en.wikipedia.org/wiki/Actor_model),
 squeryl as a database wrapper (ORM),
 scalatest as a testing framework,
-git+github as a version control system,
+git as a version control system,
 
 All code is written in english.
 Documentation, ToDos and other such stuff is written in russian right now.
@@ -25,7 +25,7 @@ Points Server -- это сервер для игры Точки.
 
 Общее описание сервера и его особенностей дано выше на английском.
 Мы же сразу перейдём к текущему описанию сервера, нашим идеям и целям:
-[./doc/about.txt]
+./doc/about.txt
 
 
 NOTICE 2014-03-12
