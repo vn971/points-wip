@@ -21,7 +21,7 @@ class RatingTest extends FunSuite with Loggable with BeforeAndAfterAll {
 	}
 
 	override def beforeAll() {
-		DBSetUp.setUp()
+		DBSetUp.setUp("jdbc:h2:mem:tests")
 		DBSetUp.createDB()
 	}
 

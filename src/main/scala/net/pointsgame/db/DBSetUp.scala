@@ -9,9 +9,10 @@ import net.liftweb.http.LiftRules
 
 object DBSetUp extends Loggable {
 
-	def setUp() {
-		val jdbcAddress = Props.get("jdbc.address").openOrThrowException("")
-		logger info "opening DB by address " + jdbcAddress
+	def setUp(
+			jdbcAddress: String = Props.get("jdbc.address").openOrThrowException("")
+			) {
+		logger.info(s"opening DB by address $jdbcAddress")
 		val connPool = JdbcConnectionPool.create(jdbcAddress, "", "")
 
 		LiftRules.unloadHooks.append { () =>
