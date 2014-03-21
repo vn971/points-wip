@@ -18,7 +18,7 @@ object Start extends App with Loggable {
 		* java -Drun.mode=production -jar myjarname.jar
 		* java -Drun.mode=production -jar myjarname.jar 9980
 		*/
-	def startLift() {
+	def startLift(): Unit = {
 		logger.info("starting Lift server")
 
 		val port: Int = {

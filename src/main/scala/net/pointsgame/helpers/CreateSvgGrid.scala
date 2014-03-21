@@ -7,12 +7,12 @@ object CreateSvgGrid {
 
 	//	create(5, 6)
 
-	def create(sizeX: Int, sizeY: Int) {
+	def create(sizeX: Int, sizeY: Int): Unit = {
 		val xml = paperLinesSvg(sizeX, sizeY)
 		XML.save(s"src/main/webapp/img/grid/howToCreate/$sizeX-$sizeY.svg", xml)
 	}
 
-	private def paperLinesSvg(sizeX: Int, sizeY: Int) = {
+	private def paperLinesSvg(sizeX: Int, sizeY: Int): xml.Node = {
 		val pixelSizeX = (sizeX - 1) * gridSquareWidth + offset * 2
 		val pixelSizeY = (sizeY - 1) * gridSquareWidth + offset * 2
 		def pixel(i: Int) = surrPixel(i).toString
@@ -30,7 +30,7 @@ object CreateSvgGrid {
 		val result = <svg xmlns="http://www.w3.org/2000/svg" style={"position: absolute; "}>
 			{NodeSeq.fromSeq((0 until sizeY).map(horizontal))}{NodeSeq.fromSeq((0 until sizeX).map(vertical))}
 		</svg>
-		result: Node
+		result
 	}
 
 }

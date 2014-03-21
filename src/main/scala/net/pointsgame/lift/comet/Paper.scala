@@ -16,8 +16,8 @@ class Paper extends CometActor with CometListener {
 	override def lowPriority = {
 		case m: List[_] =>
 			val newEventList = m.asInstanceOf[List[PaperEvent]]
-			val lastPrev = eventList.lastOption.getOrElse(null)
-			val update = newEventList.view.reverse.takeWhile(lastPrev != _).map(eventToJs).fold(JsCmds.Noop)(_ & _)
+			val lastPrev = eventList.lastOption
+			val update = newEventList.view.reverse.takeWhile(n => lastPrev.forall(_ != n)).map(eventToJs).fold(JsCmds.Noop)(_ & _)
 			eventList = newEventList
 			partialUpdate(update)
 	}

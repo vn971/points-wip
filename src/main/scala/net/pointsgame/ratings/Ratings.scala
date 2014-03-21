@@ -17,10 +17,11 @@ object Ratings extends Loggable {
 		while (right - left >= 3) {
 			val leftThird = (left * 2 + right) / 3
 			val rightThird = (left + right * 2) / 3
-			if (f(leftThird) < f(rightThird))
+			if (f(leftThird) < f(rightThird)) {
 				left = leftThird
-			else
+			} else {
 				right = rightThird
+			}
 		}
 		left
 	}
@@ -31,42 +32,42 @@ object Ratings extends Loggable {
 	@inline def probabilityToLose(myRating: Long, oppRating: Long, precision: Double) =
 		1 - precision * myRating / (oppRating + myRating)
 
-	def refineRating(me: String, now: Long = System.currentTimeMillis) {
+	def refineRating(userId: Long, now: Long = System.currentTimeMillis) {
 
 		@inline def packPrecisionDate(prec: Double, date: Long) = {
-//						exp((now - date).toDouble / decreaseImpactTime) * prec
+			//						exp((now - date).toDouble / decreaseImpactTime) * prec
 			1.0
 		}
 
-		def gamesWithFirstPlayer(user: String, firstWon: Boolean) =
+		def gamesWithFirstPlayer(user: Long, firstWon: Boolean) =
 			transaction {
 				from(games, users)((game, opponent) =>
 					where(
 						game.first === user and
-							game.second === opponent.id and
-							game.wonFirst === Some(firstWon)
+								game.second === opponent.id and
+								game.wonFirst === Some(firstWon)
 					)
-						select(opponent.rating, packPrecisionDate(opponent.ratingPrecision, game.date.getTime))
+							select(opponent.rating, packPrecisionDate(opponent.ratingPrecision, game.date.getTime))
 				).toList
 			}
 
-		def gamesWithSecondPlayer(user: String, firstWon: Boolean) =
+		def gamesWithSecondPlayer(user: Long, firstWon: Boolean) =
 			transaction {
 				from(games, users)((game, opponent) =>
 					where(
 						game.first === opponent.id and
-							game.second === user and
-							game.wonFirst === Some(firstWon)
+								game.second === user and
+								game.wonFirst === Some(firstWon)
 					)
-						select(opponent.rating, packPrecisionDate(opponent.ratingPrecision, game.date.getTime))
+							select(opponent.rating, packPrecisionDate(opponent.ratingPrecision, game.date.getTime))
 				).toList
 			}
 
-		val winList = gamesWithFirstPlayer(me, firstWon = true) :::
-			gamesWithSecondPlayer(me, firstWon = false)
+		val winList = gamesWithFirstPlayer(userId, firstWon = true) :::
+				gamesWithSecondPlayer(userId, firstWon = false)
 
-		val lossList = gamesWithFirstPlayer(me, firstWon = false) :::
-			gamesWithSecondPlayer(me, firstWon = true)
+		val lossList = gamesWithFirstPlayer(userId, firstWon = false) :::
+				gamesWithSecondPlayer(userId, firstWon = true)
 
 		def probabilityOfRating(myRating: Long) = {
 			var result = 1.0d

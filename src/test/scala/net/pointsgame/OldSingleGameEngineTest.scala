@@ -40,7 +40,7 @@ class OldSingleGameEngineTest extends FunSuite with Loggable {
 	/**
 	 * test name is equal the the graphical game representation
 	 */
-	def testGame(s: String, tests: (List[MoveResult] => Boolean)*) {
+	def testGame(s: String, tests: (List[MoveResult] => Boolean)*): Unit = {
 		test(s.drop(2)) {
 			val playedGame = play(s)
 			tests.foreach(func => assert(func(playedGame)))

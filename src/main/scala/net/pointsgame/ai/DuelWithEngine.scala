@@ -16,7 +16,7 @@ class DuelWithEngine extends Actor with ActorLogging {
 		Surrounding(s.isRed, s.path.toList.map(d => Dot(d.x - 1, d.y - 1)))
 	}
 
-	def handleDot(x: Int,y: Int, red_? : Boolean) {
+	def handleDot(x: Int,y: Int, red_? : Boolean): Unit = {
 			if (engine.canMakeMove(x + 1, y + 1)) {
 				engine.makeMove(x + 1, y + 1, red_?)
 				context.become(if (red_?) bluesTurn else redsTurn, discardOld = true)
@@ -48,6 +48,6 @@ class DuelWithEngine extends Actor with ActorLogging {
 	override def receive = bluesTurn
 
 	override def preStart() {
-		log.info("starting actor with engine: "+engine)
+		log.info(s"starting actor with engine: $engine")
 	}
 }

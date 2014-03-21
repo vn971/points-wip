@@ -15,7 +15,7 @@ import net.pointsgame.lift.rest.{ RestPages, MyRest }
  *  to modify lift's environment
  */
 class Boot extends Loggable {
-	def boot() {
+	def boot(): Unit = {
 
 		LiftRules.addToPackages("net.pointsgame.lift") // where to search snippet
 
