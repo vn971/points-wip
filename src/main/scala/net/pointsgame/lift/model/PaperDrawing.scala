@@ -10,9 +10,6 @@ case class Dot(x: Int, y: Int)
 case object NewGame
 case class Surrounding(isRed: Boolean, perimeter: List[Dot]) extends PaperEvent
 
-case class AiInitWithBoardSize(x: Int, y: Int)
-case class AiGenMove(isRed: Boolean)
-case class AiGenMoveWithTime(isRed: Boolean, milliseconds: Long)
 
 case class DotFromAi(x: Int, y: Int, isRed: Boolean)
 

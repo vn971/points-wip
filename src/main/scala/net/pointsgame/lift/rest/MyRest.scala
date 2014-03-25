@@ -10,7 +10,7 @@ object MyRest extends RestHelper {
 
 	serve {
 		case Get("api" :: "makemove" :: room :: AsInt(x) :: AsInt(y) :: Nil, req) =>
-			liftGameData.ai ! Dot(x, y)
+			AiSingleton.duel ! Dot(x, y)
 			OkResponse()
 	}
 }

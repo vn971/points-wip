@@ -13,7 +13,7 @@ organization := "net.pointsgame"
 description := "Web server for the game Points"
 
 
-scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
+scalacOptions ++= Seq("-unchecked", "-feature", "-Xfuture", "-Xcheckinit") // ,"-Xlint"
 
 transitiveClassifiers in Global := Seq(Artifact.SourceClassifier) // don't download javadoc
 
@@ -60,7 +60,7 @@ val liftVersion = "3.0-SNAPSHOT"
 
 libraryDependencies ++= Seq(
 	"ch.qos.logback" % "logback-classic" % "1.0.13",
-	"com.h2database" % "h2" % "1.3.173",
+	"com.h2database" % "h2" % "1.3.175",
 	"com.typesafe.akka" % "akka-actor_2.10" % "2.3.0",
 	"net.liftmodules" %% "fobo_3.0" % "1.2",
 	"net.liftweb" %% "lift-webkit" % liftVersion,
