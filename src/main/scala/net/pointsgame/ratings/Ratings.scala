@@ -2,8 +2,8 @@ package net.pointsgame.ratings
 
 import net.liftweb.common.Loggable
 import net.pointsgame.db.DBLibrary._
+import net.pointsgame.db.Pointsgame._
 import net.pointsgame.ratings.RatingConstants._
-import org.squeryl.PrimitiveTypeMode._
 
 
 /**
@@ -43,8 +43,8 @@ object Ratings extends Loggable {
 			transaction {
 				from(games, users)((game, opponent) =>
 					where(
-						game.first === user and
-								game.second === opponent.id and
+						game.firstId === user and
+								game.secondId === opponent.id and
 								game.wonFirst === Some(firstWon)
 					)
 							select(opponent.rating, packPrecisionDate(opponent.ratingPrecision, game.date.getTime))
@@ -55,8 +55,8 @@ object Ratings extends Loggable {
 			transaction {
 				from(games, users)((game, opponent) =>
 					where(
-						game.first === opponent.id and
-								game.second === user and
+						game.firstId === opponent.id and
+								game.secondId === user and
 								game.wonFirst === Some(firstWon)
 					)
 							select(opponent.rating, packPrecisionDate(opponent.ratingPrecision, game.date.getTime))
@@ -89,8 +89,8 @@ object Ratings extends Loggable {
 
 		transaction {
 			users.update(u =>
-				where(u.id === me)
-					set(u.rating := newRating, u.ratingPrecision := 1.0)
+				where(u.id === userId)
+						set(u.rating := newRating, u.ratingPrecision := 1.0)
 			)
 		}
 
@@ -98,7 +98,7 @@ object Ratings extends Loggable {
 
 	def refineAllRatings() {
 		val userList = transaction {
-			users.toList
+			users.allRows.toList
 		}
 		userList.par.foreach(u => Ratings.refineRating(u.id))
 	}

@@ -2,9 +2,9 @@ package net.pointsgame.actor
 
 import akka.actor.Actor
 import net.liftweb.common.Loggable
+import net.pointsgame.db.Pointsgame._
 import net.pointsgame.db.{MessageFunctions, DBUser, Message, DBLibrary}
 import net.pointsgame.lift.comet.ChatComet
-import org.squeryl.PrimitiveTypeMode._
 import scala.collection.immutable
 import scala.collection.mutable
 

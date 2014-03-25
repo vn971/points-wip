@@ -2,18 +2,18 @@ package net.pointsgame.db
 
 import net.liftweb.common.Loggable
 import net.pointsgame.db.DBLibrary._
-import org.squeryl.PrimitiveTypeMode._
+import net.pointsgame.db.Pointsgame._
 
 object DBFunctions extends Loggable {
 
-	def findGames(user: String) =
+	def findGames(user: Long): List[DBGame] =
 		transaction {
-			DBLibrary.games.where(g => g.first === user or g.second === user).toList
+			DBLibrary.games.where(g => g.firstId === user or g.secondId === user).toList
 		}
 
-	def getRating(user: String) = {
+	def getRating(userId: Long): Long = {
 		transaction {
-			users.lookup(user).map(_.rating).getOrElse(-1L)
+			users.lookup(userId).map(_.rating).getOrElse(-1L)
 		}
 	}
 

@@ -65,6 +65,6 @@ libraryDependencies ++= Seq(
 	"net.liftmodules" %% "fobo_3.0" % "1.2",
 	"net.liftweb" %% "lift-webkit" % liftVersion,
 	"org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115",
-	"org.squeryl" %% "squeryl" % "0.9.5-6",
+	"org.squeryl" %% "squeryl" % "0.9.6-RC2",
 	"org.scalatest" %% "scalatest" % "2.1.0" % "test"
 )

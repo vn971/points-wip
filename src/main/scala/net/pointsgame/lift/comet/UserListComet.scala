@@ -10,9 +10,9 @@ import scala.collection.immutable
 
 class UserListComet extends CometActor with Loggable {
 	private var users = immutable.HashSet[DBUser](
-		DBUser("testId", "test name"),
-		DBUser("user3", "Frosya"),
-		DBUser("user2", "Vasya")
+		DBUser(name = "test name"),
+		DBUser(name = "Frosya"),
+		DBUser(name = "Vasya")
 	)
 
 	override def localSetup() {

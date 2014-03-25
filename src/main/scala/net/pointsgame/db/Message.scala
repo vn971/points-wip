@@ -2,8 +2,8 @@ package net.pointsgame.db
 
 import java.sql.Timestamp
 import net.liftweb.common.Loggable
+import net.pointsgame.db.Pointsgame._
 import org.joda.time.{DateTimeZone, DateTime}
-import org.squeryl.PrimitiveTypeMode._
 import org.squeryl.annotations._
 
 case class Message(
