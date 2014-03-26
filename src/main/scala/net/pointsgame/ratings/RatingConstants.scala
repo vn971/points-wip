@@ -1,3 +1,7 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.ratings
 
 import scala.concurrent.duration._
@@ -18,7 +22,8 @@ object RatingConstants extends Loggable {
 		val expp = exp(ratingDiff.toDouble / expConst)
 		(defComputerRating / (expp - 1)).round
 	}
-	private lazy val humanRatingShift = (defHumanRating - log(defComputerRating + minRatingConstant) * expConst).round.toInt
+	private lazy val humanRatingShift =
+		(defHumanRating - log(defComputerRating + minRatingConstant) * expConst).round.toInt
 
 
 	def longToHuman(r: Long) = (log(r + minRatingConstant) * expConst).round.toInt + humanRatingShift

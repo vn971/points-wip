@@ -1,7 +1,12 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.engine
 
 import scala.collection.immutable
 import scala.collection.mutable.ListBuffer
+import scala.collection.immutable.VectorIterator
 
 
 protected class Field(val sizeX: Int, val sizeY: Int) {
@@ -13,10 +18,13 @@ protected class Field(val sizeX: Int, val sizeY: Int) {
 	private val e = new Dot(-1, -1, -1)
 
 	private val field = immutable.Vector.
-		tabulate[Dot](sizeX * sizeY)(i =>
-		new Dot(i, i % sizeX, i / sizeX))
+			tabulate[Dot](sizeX * sizeY) { i =>
+		new Dot(i, i % sizeX, i / sizeX)
+	}
 
-	def apply(x: Int, y: Int) = field(x + y * sizeX)
+	def dotsIterator = field.iterator
+
+	def apply(x: Int, y: Int): Dot = field(x + y * sizeX)
 
 	for (x <- 0 until sizeX; y <- 0 until sizeY) {
 		val dot = this(x, y)
@@ -40,7 +48,7 @@ protected class Field(val sizeX: Int, val sizeY: Int) {
 	for (x <- 1 until sizeX; y <- 1 until sizeY) this(x, y).lu = this(x - 1, y - 1)
 
 	def toPicture = {
-		val result = List.fill(sizeY * 3)(ListBuffer.fill(sizeX * 3)(' '))
+		val result = Vector.fill(sizeY * 3)(ListBuffer.fill(sizeX * 3)(' '))
 		for (x <- 0 until sizeX; y <- 0 until sizeY) {
 			this(x, y).dotType match {
 				case Dot.empty => result(x * 3 + 1)(y * 3 + 1) = ' '

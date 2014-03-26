@@ -1,3 +1,7 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.actor
 
 import akka.actor.{ActorRef, ActorSystem, Actor, Props}
@@ -17,13 +21,13 @@ object Root extends Loggable {
 					//roomSupervisor.path./(name).toString))
 		}
 
-	def shutdown() {
+	def shutdown(): Unit = {
 		system.shutdown()
 	}
 }
 
 class Rooms extends Actor with Loggable {
 	def receive = {
-		case _ => logger error "received something!"
+		case m@_ => logger.error(s"room actor received unknown message $m")
 	}
 }

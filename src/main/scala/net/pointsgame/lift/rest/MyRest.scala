@@ -1,3 +1,7 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.lift.rest
 
 import net.liftweb.http._
@@ -22,7 +26,7 @@ object RestPages extends RestHelper {
 			for {
 				session <- S.session
 				template = Templates("gameRoom" :: Nil)
-				response <- session.processTemplate(template, req, req.path, 200 /* or a different HTTP response code here */)
+				response <- session.processTemplate(template, req, req.path, 200)
 			} yield response
 	}
 }

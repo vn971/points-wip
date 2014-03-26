@@ -1,3 +1,7 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.humanity
 
 import net.liftweb.common.Loggable
@@ -23,7 +27,7 @@ object Numbers extends Loggable {
 
 object Helper {
 	//	 calculates bas^pow (mod m).  This is quick even for a large "pow".
-	def longPower(bas: Int, pow: Int, mod: Int) = {
+	def longPower(bas: Int, pow: Int, mod: Int): Int = {
 		var result = 1
 		var bitmask = 1 // bitmask for pow
 		var basePowI = bas
@@ -45,7 +49,7 @@ class MyHumanVerifier extends Loggable {
 
 	var mod = Numbers.randomModule()
 
-	def isHuman = (mod == 0)
+	def isHuman: Boolean = (mod == 0)
 
 	def check(power: String) {
 		if (!isHuman && power.matches("[0-9]{1,11}")) check(power.toInt)
@@ -56,7 +60,7 @@ class MyHumanVerifier extends Loggable {
 			val exp = longPower(base, power, mod)
 			if (exp <= acceptableLimit && power > 1) {
 				mod = 0
-				logger.info("Confirmed that he is a human.")
+				logger.debug("Confirmed that he is a human.")
 			}
 		}
 	}

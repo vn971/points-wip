@@ -1,3 +1,7 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.lift.comet
 
 import net.liftweb.common.Loggable
@@ -15,11 +19,11 @@ class UserListComet extends CometActor with Loggable {
 		DBUser(name = "Vasya")
 	)
 
-	override def localSetup() {
+	override protected def localSetup() {
 		super.localSetup()
 	}
 
-	override def localShutdown() {
+	override protected def localShutdown() {
 		super.localShutdown()
 	}
 
@@ -31,16 +35,16 @@ class UserListComet extends CometActor with Loggable {
 			val added = users -- oldUsers
 			val removed = oldUsers -- users
 
-			def addSingle(u:DBUser) = JqId("user_list") ~> JqAppend(transform(u))
+			def addSingle(u: DBUser) = JqId("user_list") ~> JqAppend(transform(u))
 			val addJs = added.map(addSingle).map(_.cmd).fold(Noop)(_ & _)
 
-			def removeSingle(r:DBUser) = JqId("user_id_"+r.id) ~> JqRemove()
+			def removeSingle(r: DBUser) = JqId("user_id_" + r.id) ~> JqRemove()
 			val removeJs = removed.map(removeSingle).map(_.cmd).fold(Noop)(_ & _)
 
 			partialUpdate(addJs & removeJs)
 	}
 
-	val transform = HtmlHelpers.seqMemoize { e: DBUser =>
+	private val transform = HtmlHelpers.seqMemoize { e: DBUser =>
 		".nick *" #> e.name &
 				"div [id]" #> ("user_id_" + e.id) &
 				".i [onclick]" #> ("alert('Информация о " + e.name + "');")

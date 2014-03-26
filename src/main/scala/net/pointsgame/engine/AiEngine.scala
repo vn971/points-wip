@@ -1,3 +1,7 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.engine
 
 import net.liftweb.common.Loggable
@@ -155,23 +159,24 @@ class AiEngine(val sizeX: Int, val sizeY: Int) extends Loggable {
 			Dot.makeRoot(dot, group(0))
 		}
 
-		if (surroundings_?) WithSurroundings()
-		else Normal
+		if (surroundings_?) {
+			WithSurroundings()
+		} else {
+			Normal
+		}
 	}
 
-	def redScore = {
-		val booleans = for (x <- 0 until sizeX; y <- 0 until sizeY) yield field(x, y).dotType == Dot.blueDefeated
-		booleans.count(x => x)
+	def redScore: Int = {
+		field.dotsIterator.count(_.dotType == Dot.blueDefeated)
 	}
 
-	def blueScore = {
-		val booleans = for (x <- 0 until sizeX; y <- 0 until sizeY) yield field(x, y).dotType == Dot.redDefeated
-		booleans.count(x => x)
+	def blueScore: Int = {
+		field.dotsIterator.count(_.dotType == Dot.redDefeated)
 	}
 
 	//def apply(x: Int, y: Int) = field(x, y).dotType
 
-	def toPicture: List[String] = field.toPicture
+	def toPicture: Vector[String] = field.toPicture
 
 }
 

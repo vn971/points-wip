@@ -1,3 +1,7 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.db
 
 import java.sql.Timestamp
@@ -16,7 +20,7 @@ object Pointsgame extends PrimitiveTypeMode {
 	}
 
 	/**
-	 * We define this one here to allow working with Option of our new type, this allso
+	 * We define this one here to allow working with Option of our new type, this also
 	 * allows the 'nvl' function to work
 	 */
 	implicit val optionJodaTimeTEF =

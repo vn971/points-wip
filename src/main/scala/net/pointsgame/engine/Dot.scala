@@ -1,3 +1,7 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.engine
 
 import net.pointsgame.engine.Dot._
@@ -28,15 +32,14 @@ protected class Dot(
 	def isFreeToPlace = dotType == empty
 
 	def isPowered(red: Boolean) =
-		if (red) List(redActive, blueDefeated, emptyEatenByRed).contains(dotType)
-		else List(blueActive, redDefeated, emptyEatenByBlue).contains(dotType)
+		if (red) {
+			List(redActive, blueDefeated, emptyEatenByRed).contains(dotType)
+		} else {
+			List(blueActive, redDefeated, emptyEatenByBlue).contains(dotType)
+		}
 
 	@tailrec
 	final def getRoot: Dot = if (treeNext == null) this else treeNext.getRoot
-
-	//@tailrec
-	//final def makeRootFor(forWho: Dot) {
-	//}
 
 	override def toString = s"($x-$y)"
 	override def hashCode() = id
@@ -69,7 +72,6 @@ protected object Dot {
 		val emp = if (red_?) emptyEatenByRed else emptyEatenByBlue
 		val bl = if (red_?) blueDefeated else blueActive
 		val rd = if (red_?) redDefeated else redActive
-		Console println s"eating $dot with color ${if (red_?) "red" else "blue"}"
 		dot.dotType = dot.dotType match {
 			case `empty` => emp
 			case `blueActive` => bl

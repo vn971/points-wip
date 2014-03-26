@@ -1,3 +1,7 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.lift.snippet
 
 import net.liftweb.common.Loggable
@@ -14,7 +18,7 @@ class ChatIn extends Loggable {
 	val actor = Root.getRoom(room)
 
 	def render = HtmlHelpers.stringFunc { inputString =>
-		val s = inputString.take(300)
+		val s = inputString.take(Message.CHARACTER_LIMIT)
 		if (!s.matches("\\s*")) {
 			for (req <- S.request) {
 				val msg = Message(room, "user", s, req.remoteAddr)

@@ -1,14 +1,19 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.helpers
 
 import net.liftweb.common.Loggable
 import net.liftweb.http.S
 import net.liftweb.util.BindHelpers._
+import net.liftweb.util.CssSel
 import scala.xml._
 
 
 object HtmlHelpers extends Loggable {
 
-	def stringFunc(f: String => Any) = S.fmapFunc(f)("* [name]" #> _)
+	def stringFunc(f: String => Any): CssSel = S.fmapFunc(f)("* [name]" #> _)
 
 	def seqMemoize[T](f: T => NodeSeq => NodeSeq) = new SeqMemoize[T] {
 		private var lastNodeSeq = NodeSeq.Empty
@@ -18,7 +23,7 @@ object HtmlHelpers extends Loggable {
 			t.flatMap(f(_)(ns))
 		}
 
-		def apply(t: T) = f(t)(lastNodeSeq)
+		def apply(t: T): NodeSeq = f(t)(lastNodeSeq)
 	}
 
 }

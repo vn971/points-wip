@@ -1,3 +1,7 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.ratings
 
 import net.liftweb.common.Loggable
@@ -32,7 +36,7 @@ object Ratings extends Loggable {
 	@inline def probabilityToLose(myRating: Long, oppRating: Long, precision: Double) =
 		1 - precision * myRating / (oppRating + myRating)
 
-	def refineRating(userId: Long, now: Long = System.currentTimeMillis) {
+	def refineRating(userId: Long, now: Long = System.currentTimeMillis): Unit = {
 
 		@inline def packPrecisionDate(prec: Double, date: Long) = {
 			//						exp((now - date).toDouble / decreaseImpactTime) * prec
@@ -96,7 +100,7 @@ object Ratings extends Loggable {
 
 	}
 
-	def refineAllRatings() {
+	def refineAllRatings(): Unit = {
 		val userList = transaction {
 			users.allRows.toList
 		}

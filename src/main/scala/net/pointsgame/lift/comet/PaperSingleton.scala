@@ -1,3 +1,7 @@
+// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+//
+// Copyright: Vasya Novikov 2013-2014.
+
 package net.pointsgame.lift.comet
 
 import net.liftweb.actor._
@@ -9,11 +13,11 @@ object PaperSingleton extends LiftActor with ListenerManager with Logger {
 
 	private var l: List[PaperEvent] = List()
 
-	def createUpdate = l
+	protected def createUpdate = l
 
-	override def lowPriority = {
+	override protected def lowPriority = {
 		case m: PaperEvent =>
-			debug("received paper event: "+m)
+			debug(s"received paper event: $m")
 			l = l :+ m
 			updateListeners()
 	}
