@@ -8,7 +8,7 @@ import akka.actor.{ActorRef, ActorSystem, Actor, Props}
 import net.liftweb.common.Loggable
 import scala.collection.mutable
 
-object Root extends Loggable {
+object AkkaManager extends Loggable {
 	private val system = ActorSystem("root")
 	private val roomList = mutable.HashMap[String, ActorRef]()
 	private val roomSupervisor = system.actorOf(Props[Rooms], "rooms")

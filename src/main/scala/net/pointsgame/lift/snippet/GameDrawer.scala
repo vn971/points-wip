@@ -8,12 +8,15 @@ import net.liftweb.common._
 import net.liftweb.http._
 import net.liftweb.util.Helpers._
 import net.pointsgame.lift.model.PaperDrawing._
-import net.pointsgame.lift.model._
 import ru.narod.vn91.pointsop.gameEngine.SingleGameEngine
 import ru.narod.vn91.pointsop.gameEngine.SingleGameEngineInterface
 import scala.xml._
 
+
+
 object GameDrawer extends Loggable {
+
+	case class SgfGame(sizeX: Int, sizeY: Int, moves: Seq[(Boolean, Int, Int)])
 
 	private def template: NodeSeq = Templates("_templates" :: "staticPaper" :: Nil).openOr(NodeSeq.Empty)
 

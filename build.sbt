@@ -6,14 +6,14 @@ name := "PointsgameServer"
 
 version := "1.0"
 
-scalaVersion := "2.10.3"
+scalaVersion := "2.10.4"
 
 organization := "net.pointsgame"
 
 description := "Web server for the game Points"
 
 
-scalacOptions ++= Seq("-unchecked", "-feature", "-Xfuture", "-Xcheckinit") // ,"-Xlint"
+scalacOptions ++= Seq("-unchecked", "-feature", "-Xfuture", "-Xcheckinit") // , "-Xlint"
 
 transitiveClassifiers in Global := Seq(Artifact.SourceClassifier) // don't download javadoc
 

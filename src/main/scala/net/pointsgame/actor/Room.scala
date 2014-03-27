@@ -14,7 +14,7 @@ import scala.collection.mutable
 
 class Room(val name: String) extends Actor with Loggable {
 
-	logger info "room actor initialized"
+	logger.info("room actor initialized")
 	protected var users = immutable.HashSet[DBUser]()
 
 	override def preStart() {}
@@ -25,7 +25,7 @@ class Room(val name: String) extends Actor with Loggable {
 }
 
 trait Chatting extends Room {
-	logger info "room chatting actor initialized"
+	logger.info("room chatting actor initialized")
 	val listeners = mutable.LinkedHashSet[ChatComet]()
 	var msgs = immutable.Vector[Message]()
 
@@ -33,18 +33,18 @@ trait Chatting extends Room {
 
 	override def receive: Receive = super.receive.orElse {
 		case m: Message =>
-			logger info s"room $name: received chat, writing to DB: $m"
+			logger.info(s"room $name: received chat, writing to DB: $m")
 			transaction {
 				DBLibrary.messages.insert(m)
 			}
 			msgs = msgs :+ m takeRight 50
 			listeners.foreach(_ ! msgs)
 		case AddChatSubscription(chatComet) =>
-			logger debug s"room $name we've been subscribed:) $chatComet"
+			logger.debug(s"room $name we've been subscribed:) $chatComet")
 			listeners += chatComet
 			chatComet ! msgs
 		case RemoveChatSubscription(chatComet) =>
-			logger debug s"room $name we've been unsubscribed:( $chatComet"
+			logger.debug(s"room $name we've been unsubscribed:( $chatComet")
 			listeners -= chatComet
 	}
 }

@@ -8,14 +8,14 @@ import net.liftweb.common.Loggable
 import net.liftweb.http._
 import net.liftweb.http.js.JsCmds._
 import net.liftweb.http.js._
-import net.pointsgame.actor.Root
+import net.pointsgame.actor.AkkaManager
 import net.pointsgame.db.Message
 import net.pointsgame.helpers.HtmlHelpers
 
 class ChatIn extends Loggable {
 
 	val room = S.uri.split('/').lastOption getOrElse ""
-	val actor = Root.getRoom(room)
+	val actor = AkkaManager.getRoom(room)
 
 	def render = HtmlHelpers.stringFunc { inputString =>
 		val s = inputString.take(Message.CHARACTER_LIMIT)

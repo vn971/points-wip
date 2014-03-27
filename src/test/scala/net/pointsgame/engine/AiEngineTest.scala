@@ -58,7 +58,6 @@ class AiEngineTest extends FunSuite with Loggable {
 	})
 
 	test("surroundEmpty") {
-		Console println "surr emp"
 		val engine = new AiEngine(5, 5)
 		engine.makeMove(1, 0, red_? = true)
 		engine.makeMove(2, 1, red_? = true)

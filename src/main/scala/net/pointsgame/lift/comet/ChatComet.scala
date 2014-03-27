@@ -17,7 +17,7 @@ import scala.xml.NodeSeq
 class ChatComet extends CometActor with Loggable {
 	private var msgs = Vector[Message]()
 
-	lazy val roomActor = Root.getRoom(this.name openOr "")
+	lazy val roomActor = AkkaManager.getRoom(this.name openOr "")
 
 	override protected def localSetup() {
 		roomActor ! AddChatSubscription(this)
