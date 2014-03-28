@@ -2,18 +2,15 @@
 //
 // Copyright: Vasya Novikov 2013-2014.
 
-package net.pointsgame
+package net.pointsgame.scalajs
 
 import org.scalatest.FunSuite
-import scalatags.SvgTags._
-import scalatags._
 import scalatags.all._
-import net.pointsgame.scalajs.ScalaJsFieldDraw
 
 class ScalatagsTest extends FunSuite {
 
 	test("fake test to produce svg.html") {
-		val justAField = ScalaJsFieldDraw.justAField()
+		val justAField = ScalaJsFieldDraw.justAField
 		val xmlToSave = xml.Unparsed(
 			html(
 				head(meta(content := "text/html; charset=UTF-8")),

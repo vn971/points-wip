@@ -1,6 +1,5 @@
 import com.typesafe.sbteclipse.core.EclipsePlugin.EclipseKeys
 import sbtassembly.Plugin.AssemblyKeys._
-import scala.scalajs.sbtplugin.ScalaJSPlugin._
 import spray.revolver.RevolverPlugin.Revolver
 
 name := "PointsgameServer"
@@ -35,16 +34,11 @@ resourceGenerators in Compile <+= (resourceManaged, baseDirectory) map { (manage
 
 
 Revolver.settings.settings
-
 //Revolver.enableDebugging(port = 5005, suspend = true)
 //Revolver.enableDebugging(port = 5005, suspend = false)
 
 
 fork in Test := true
-
-scalaJSSettings
-
-ScalaJSKeys.optimizeJSPrettyPrint := true
 
 
 resolvers ++= Seq(
@@ -54,20 +48,30 @@ resolvers ++= Seq(
 // uncomment if you don't want to use your internet connection for SNAPSHOT updates:
 // offline:=true
 
-//val liftVersion = "2.5.1"
-val liftVersion = "3.0-SNAPSHOT"
+lazy val h2database = "com.h2database" % "h2" % "1.3.175"
+lazy val scalatags = "com.scalatags" % "scalatags_2.10" % "0.2.4"
+lazy val scalatagsJs = "com.scalatags" % "scalatags_2.10" % "0.2.4-JS"
+lazy val scalarx = "com.scalarx" % "scalarx_2.10" % "0.2.3"
+lazy val scalarxJs = "com.scalarx" % "scalarx_2.10" % "0.2.3-JS"
+lazy val logback = "ch.qos.logback" % "logback-classic" % "1.0.13"
+lazy val akka = "com.typesafe.akka" %% "akka-actor" % "2.3.0"
+lazy val fobo = "net.liftmodules" %% "fobo_3.0" % "1.2"
+lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-SNAPSHOT"
+lazy val jetty = "org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115"
+lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.6-RC2"
+lazy val scalatest = "org.scalatest" %% "scalatest" % "2.1.0" % "test"
+//lazy val gitDependency = uri("git://github.com/example/dependency.git#master")
 
-libraryDependencies ++= Seq(
-	"ch.qos.logback" % "logback-classic" % "1.0.13",
-	"com.h2database" % "h2" % "1.3.175",
-	"com.scalarx" % "scalarx_2.10" % "0.2.3",
-	"com.scalarx" % "scalarx_2.10" % "0.2.3-JS",
-	"com.scalatags" % "scalatags_2.10" % "0.2.4",
-	"com.scalatags" % "scalatags_2.10" % "0.2.4-JS",
-	"com.typesafe.akka" % "akka-actor_2.10" % "2.3.0",
-	"net.liftmodules" %% "fobo_3.0" % "1.2",
-	"net.liftweb" %% "lift-webkit" % liftVersion,
-	"org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115",
-	"org.squeryl" %% "squeryl" % "0.9.6-RC2",
-	"org.scalatest" %% "scalatest" % "2.1.0" % "test"
+lazy val myCommonDependencies = Seq(
+	scalarx, scalarxJs, scalatags, scalatagsJs,
+	h2database, logback, akka, fobo,
+	liftWebkit, jetty, squeryl, scalatest
+)
+
+lazy val reactivePoints = project.in(file("./modules/reactivePoints/")).settings(
+	libraryDependencies ++= myCommonDependencies
+)
+
+lazy val root = project.in(file(".")).dependsOn(reactivePoints).settings(
+	libraryDependencies ++= myCommonDependencies
 )

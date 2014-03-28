@@ -10,5 +10,8 @@
 /target
 /project/project
 /project/target
+/modules/*/target
+/modules/*/project/project
+/modules/*/project/target
 
 /local-dev-database*

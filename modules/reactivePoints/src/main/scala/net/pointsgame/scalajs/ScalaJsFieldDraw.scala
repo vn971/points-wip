@@ -13,7 +13,7 @@ import scalatags.all._
 object ScalaJsFieldDraw {
 
 	@JSExport
-	def justAField() = {
+	val justAField = {
 		val gridSquareSize = rx.Var(20)
 		val offset = rx.Rx(gridSquareSize() / 2)
 
@@ -28,6 +28,7 @@ object ScalaJsFieldDraw {
 				).toString)
 
 		def coord(c: Int) = (offset() + c * gridSquareSize()).toString
+		val strokeStyle = (style := "stroke:rgb(99,99,99); stroke-width:1")
 
 		val horizontalGridLines = rx.Rx(0 until sizeY() map { y =>
 			line(
@@ -35,7 +36,7 @@ object ScalaJsFieldDraw {
 				"y2".attr := coord(y),
 				"x1".attr := "0",
 				"x2".attr := totalWidth(),
-				style := "stroke:rgb(99,99,99); stroke-width:1"
+				strokeStyle
 			)
 		})
 		val verticalGridLines = rx.Rx(0 until sizeX() map { x =>
@@ -44,7 +45,7 @@ object ScalaJsFieldDraw {
 				"x2".attr := coord(x),
 				"y1".attr := "0",
 				"y2".attr := totalHeight(),
-				style := "stroke:rgb(99,99,99); stroke-width:1"
+				strokeStyle
 			)
 		})
 
