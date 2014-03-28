@@ -1,9 +1,8 @@
 package net.pointsgame
 
-import net.liftweb.common.Loggable
 import org.scalatest.FunSuite
 
-class CheckHtml extends FunSuite with Loggable {
+class CheckHtml extends FunSuite {
 
 	/** Tests to make sure the project's XML files are well-formed.
 		*

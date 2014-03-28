@@ -1,5 +1,6 @@
 import com.typesafe.sbteclipse.core.EclipsePlugin.EclipseKeys
 import sbtassembly.Plugin.AssemblyKeys._
+import scala.scalajs.sbtplugin.ScalaJSPlugin._
 import spray.revolver.RevolverPlugin.Revolver
 
 name := "PointsgameServer"
@@ -7,11 +8,6 @@ name := "PointsgameServer"
 version := "1.0"
 
 scalaVersion := "2.10.4"
-
-organization := "net.pointsgame"
-
-description := "Web server for the game Points"
-
 
 scalacOptions ++= Seq("-unchecked", "-feature", "-Xfuture", "-Xcheckinit") // , "-Xlint"
 
@@ -26,17 +22,16 @@ jarName in assembly := "pointsgame.jar"
 
 assembly <<= assembly dependsOn (test in Test)
 
-resourceGenerators in Compile <+= (resourceManaged, baseDirectory) map
-		{ (managedBase, base) =>
-			val webappBase = base / "src" / "main" / "webapp"
-			for {
-				(from, to) <- webappBase ** "*" pair rebase(webappBase, managedBase /
-						"main" / "webapp")
-			} yield {
-				Sync.copy(from, to)
-				to
-			}
-		}
+resourceGenerators in Compile <+= (resourceManaged, baseDirectory) map { (managedBase, base) =>
+	val webappBase = base / "src" / "main" / "webapp"
+	for {
+		(from, to) <- webappBase ** "*" pair rebase(webappBase, managedBase /
+				"main" / "webapp")
+	} yield {
+		Sync.copy(from, to)
+		to
+	}
+}
 
 
 Revolver.settings.settings
@@ -46,6 +41,10 @@ Revolver.settings.settings
 
 
 fork in Test := true
+
+scalaJSSettings
+
+ScalaJSKeys.optimizeJSPrettyPrint := true
 
 
 resolvers ++= Seq(
@@ -61,6 +60,10 @@ val liftVersion = "3.0-SNAPSHOT"
 libraryDependencies ++= Seq(
 	"ch.qos.logback" % "logback-classic" % "1.0.13",
 	"com.h2database" % "h2" % "1.3.175",
+	"com.scalarx" % "scalarx_2.10" % "0.2.3",
+	"com.scalarx" % "scalarx_2.10" % "0.2.3-JS",
+	"com.scalatags" % "scalatags_2.10" % "0.2.4",
+	"com.scalatags" % "scalatags_2.10" % "0.2.4-JS",
 	"com.typesafe.akka" % "akka-actor_2.10" % "2.3.0",
 	"net.liftmodules" %% "fobo_3.0" % "1.2",
 	"net.liftweb" %% "lift-webkit" % liftVersion,
