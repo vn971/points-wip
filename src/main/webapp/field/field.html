@@ -2,18 +2,29 @@
 <head>
 	<title>won't be used</title>
 </head>
-<body class="lift:content_id=mainField">
-<div id="mainField" ondragstart="return false" ondrop="return false">
+<body class="lift:content_id=liftFrameMainField">
+<div id="liftFrameMainField" ondragstart="return false" ondrop="return false">
 	<head_merge>
 		<link data-lift="with-resource-id" href="/field/field.css" rel="stylesheet"
 				type="text/css"/>
 	</head_merge>
 
-	<div id="surroundings"></div>
-	<div id="connections"></div>
-	<div id="dots"></div>
-	<div data-lift="comet?type=Paper"></div>
-	<img id="grid" src="/img/grid.png" alt="grid"/>
+	<head_merge>
+		<link data-lift="with-resource-id" href="/css/jsField.css" rel="stylesheet"
+				type="text/css"/>
+	</head_merge>
+
+	<div id="insertFieldHere"></div>
+	<script data-lift="with-resource-id" src="/js/reactivepoints-opt.js"></script>
+	<script type="text/javascript">JsField();</script>
+
+	<div id="mainField">
+		<div id="surroundings"></div>
+		<div id="connections"></div>
+		<div id="dots"></div>
+		<div data-lift="comet?type=Paper"></div>
+		<img id="grid" src="/img/grid.png" alt="grid"/>
+	</div>
 
 	<tail>
 		<script type="text/javascript">

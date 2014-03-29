@@ -10,7 +10,7 @@ import scalatags.all._
 class ScalatagsTest extends FunSuite {
 
 	test("fake test to produce svg.html") {
-		val justAField = ScalaJsFieldDraw.justAField
+		val justAField = JsField.svgAsXml
 		val xmlToSave = xml.Unparsed(
 			html(
 				head(meta(content := "text/html; charset=UTF-8")),

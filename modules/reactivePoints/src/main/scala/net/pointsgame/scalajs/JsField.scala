@@ -7,13 +7,13 @@ package net.pointsgame.scalajs
 import scala.scalajs.js.annotation.JSExport
 import scalatags.SvgTags._
 import scalatags._
-import scalatags.all._
 
 @JSExport
-object ScalaJsFieldDraw {
+object JsField {
+	println(this.getClass.getName + " initialized!")
 
 	@JSExport
-	val justAField = {
+	lazy val svgAsXml = {
 		val gridSquareSize = rx.Var(20)
 		val offset = rx.Rx(gridSquareSize() / 2)
 
@@ -28,15 +28,13 @@ object ScalaJsFieldDraw {
 				).toString)
 
 		def coord(c: Int) = (offset() + c * gridSquareSize()).toString
-		val strokeStyle = (style := "stroke:rgb(99,99,99); stroke-width:1")
 
 		val horizontalGridLines = rx.Rx(0 until sizeY() map { y =>
 			line(
 				"y1".attr := coord(y),
 				"y2".attr := coord(y),
 				"x1".attr := "0",
-				"x2".attr := totalWidth(),
-				strokeStyle
+				"x2".attr := totalWidth()
 			)
 		})
 		val verticalGridLines = rx.Rx(0 until sizeX() map { x =>
@@ -44,19 +42,21 @@ object ScalaJsFieldDraw {
 				"x1".attr := coord(x),
 				"x2".attr := coord(x),
 				"y1".attr := "0",
-				"y2".attr := totalHeight(),
-				strokeStyle
+				"y2".attr := totalHeight()
 			)
 		})
 
 		val mySvg = rx.Rx(
-			svg("height".attr := totalHeight(), "width".attr := totalWidth(), position.absolute)(
-				horizontalGridLines(),
-				verticalGridLines()
-			)
+			svg("height".attr := totalHeight(), "width".attr := totalWidth())(
+						horizontalGridLines(),
+						verticalGridLines()
+					)
 		)
-
 		mySvg()
 	}
+
+
+	//	org.scalajs.dom.alert(svgAsString)
+	org.scalajs.dom.document.getElementById("insertFieldHere").innerHTML = svgAsXml.toString()
 
 }
