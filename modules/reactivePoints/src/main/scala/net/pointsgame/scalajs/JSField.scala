@@ -30,14 +30,14 @@ object MyTestingEntryPoint {
 	@JSExport
 	def main(): Unit = {
 		dom.document.getElementById("increaseFieldSize").onmousedown = { (e: MouseEvent) =>
-			console.log("+ start")
+			println("+ start")
 			gridSquareSize() = gridSquareSize() + 1
-			console.log("+ end")
+			println("+ end")
 		}
 		dom.document.getElementById("decreaseFieldSize").onmousedown = { (e: MouseEvent) =>
-			console.log("- start")
+			println("- start")
 			gridSquareSize() = math.max(0, gridSquareSize() - 1)
-			console.log("- end")
+			println("- end")
 		}
 	}
 }

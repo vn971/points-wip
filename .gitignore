@@ -14,4 +14,4 @@
 /modules/*/project/project
 /modules/*/project/target
 
-/local-dev-database*
+/modules/server/local-dev-database*
