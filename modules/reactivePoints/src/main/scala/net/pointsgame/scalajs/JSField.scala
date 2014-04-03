@@ -7,11 +7,10 @@ package net.pointsgame.scalajs
 import net.pointsgame.scalajs.PlayerGlobalVariables._
 import org.scalajs.dom
 import org.scalajs.dom.MouseEvent
-import org.scalajs.dom.console
+import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport
 import scalatags.SvgTags._
 import scalatags._
-import scala.scalajs.js
 
 
 object PlayerGlobalVariables {
@@ -19,13 +18,15 @@ object PlayerGlobalVariables {
 	val offset = rx.Rx(PlayerGlobalVariables.gridSquareSize() / 3)
 
 	def coord(c: Int) = (offset() + c * gridSquareSize()).toString
+
+	val isIE = dom.navigator.appName.contains("Microsoft Internet Explorer")
 }
 
 
 @JSExport
 object MyTestingEntryPoint {
-	val field1 = new JSField(20, 20, "field1")
-	val field2 = new JSField(10, 10, "field2")
+	val field1 = new JSField(25, 20, "field1")
+	val field2 = new JSField(15, 10, "field2")
 
 	@JSExport
 	def main(): Unit = {
@@ -63,6 +64,12 @@ class JSField(val sizeX: Int, val sizeY: Int, domId: String) {
 		rootDomElement.setAttribute(name = "width", value = totalWidth())
 	}
 
+	def ieViewbox = if (isIE) {
+		Some("viewBox".attr := s"0 0.5 ${totalWidth()} ${totalHeight()}")
+	} else {
+		None
+	}
+
 	rx.Obs(gridSquareSize) {
 		val verticalGridLines = 0 until sizeX map { x =>
 			line(
@@ -83,6 +90,7 @@ class JSField(val sizeX: Int, val sizeY: Int, domId: String) {
 		val gridSvgToInsert = svg(
 			"height".attr := totalHeight(),
 			"width".attr := totalWidth(),
+			ieViewbox,
 			horizontalGridLines,
 			verticalGridLines
 		).toString()
