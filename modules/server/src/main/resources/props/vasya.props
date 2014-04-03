@@ -1,0 +1,2 @@
+jdbc.address=jdbc:h2:local-dev-database;AUTO_SERVER=TRUE;
+insecure.allow.console=true

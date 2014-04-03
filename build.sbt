@@ -1,6 +1,4 @@
 import com.typesafe.sbteclipse.core.EclipsePlugin.EclipseKeys
-import sbtassembly.Plugin.AssemblyKeys._
-import spray.revolver.RevolverPlugin.Revolver
 
 lazy val commonSettings = Seq(
 	version := "1.0",
@@ -10,29 +8,6 @@ lazy val commonSettings = Seq(
 	fork in Test := true,
 	EclipseKeys.withSource := true // download sources for eclipse
 )
-
-
-sbtassembly.Plugin.assemblySettings
-
-jarName in assembly := "pointsgame.jar"
-
-assembly <<= assembly dependsOn (test in Test)
-
-resourceGenerators in Compile <+= (resourceManaged, baseDirectory) map { (managedBase, base) =>
-	val webappBase = base / "src" / "main" / "webapp"
-	for {
-		(from, to) <- webappBase ** "*" pair rebase(webappBase, managedBase /
-				"main" / "webapp")
-	} yield {
-		Sync.copy(from, to)
-		to
-	}
-}
-
-
-Revolver.settings.settings
-//Revolver.enableDebugging(port = 5005, suspend = true)
-//Revolver.enableDebugging(port = 5005, suspend = false)
 
 
 resolvers ++= Seq(
@@ -57,6 +32,7 @@ lazy val utest = "com.lihaoyi" % "utest_2.10" % "[0.1.2,)" % "test"
 lazy val scalaJQuery = "org.scala-lang.modules.scalajs" %% "scalajs-jquery" % "0.3"
 //lazy val gitDependency = uri("git://github.com/example/dependency.git#master")
 
+
 lazy val reactivePoints = project.in(file("./modules/reactivePoints/")).
 		settings(
 			libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom)
@@ -64,7 +40,7 @@ lazy val reactivePoints = project.in(file("./modules/reactivePoints/")).
 			commonSettings: _*
 		)
 
-lazy val server = project.in(file(".")).
+lazy val server = project.in(file("./modules/server/")).
 		dependsOn(reactivePoints).
 		settings(
 			libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom, h2database, logback, akka, liftWebkit, jetty, squeryl, scalatest)
