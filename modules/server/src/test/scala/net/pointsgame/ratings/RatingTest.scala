@@ -20,12 +20,12 @@ class RatingTest extends FunSuite with Loggable with BeforeAndAfterAll {
 		assert(Ratings.probabilityToLose(1000L, 500L, 1.0) < 0.4)
 	}
 
-	override def beforeAll() {
+	override def beforeAll(): Unit = {
 		DBSetUp.setUp("jdbc:h2:mem:tests")
 		DBSetUp.createDB()
 	}
 
-	override def afterAll() {
+	override def afterAll(): Unit = {
 		DBSetUp.dropDB()
 	}
 

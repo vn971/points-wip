@@ -19,11 +19,11 @@ class UserListComet extends CometActor with Loggable {
 		DBUser(name = "Vasya")
 	)
 
-	override protected def localSetup() {
+	override protected def localSetup(): Unit = {
 		super.localSetup()
 	}
 
-	override protected def localShutdown() {
+	override protected def localShutdown(): Unit = {
 		super.localShutdown()
 	}
 

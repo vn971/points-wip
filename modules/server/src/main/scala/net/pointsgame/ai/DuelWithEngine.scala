@@ -51,7 +51,7 @@ class DuelWithEngine extends Actor with ActorLogging {
 
 	override def receive = bluesTurn
 
-	override def preStart() {
+	override def preStart(): Unit = {
 		log.info(s"starting actor with engine: $engine")
 	}
 }

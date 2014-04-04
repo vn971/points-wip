@@ -15,7 +15,7 @@ object DBSetUp extends Loggable {
 
 	def setUp(
 			jdbcAddress: String = Props.get("jdbc.address").openOrThrowException("")
-			) {
+			): Unit = {
 		logger.info(s"opening DB by address $jdbcAddress")
 		val connPool = JdbcConnectionPool.create(jdbcAddress, "", "")
 
@@ -30,7 +30,7 @@ object DBSetUp extends Loggable {
 				new org.squeryl.adapters.H2Adapter))
 	}
 
-	def createDB() {
+	def createDB(): Unit = {
 		try {
 			transaction {
 				DBLibrary.create
@@ -41,7 +41,7 @@ object DBSetUp extends Loggable {
 		}
 	}
 
-	def dropDB() {
+	def dropDB(): Unit = {
 		try {
 			transaction {
 				DBLibrary.drop

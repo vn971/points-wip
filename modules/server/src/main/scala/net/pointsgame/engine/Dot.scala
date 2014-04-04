@@ -62,13 +62,13 @@ protected object Dot {
 	val redCtrl = 10
 
 	@tailrec
-	def makeRoot(newRoot: Dot, forWho: Dot) {
+	def makeRoot(newRoot: Dot, forWho: Dot): Unit = {
 		val nextNext = forWho.treeNext
 		forWho.treeNext = newRoot
 		if (nextNext != null) Dot.makeRoot(forWho, nextNext)
 	}
 
-	def eat(dot:Dot, red_? : Boolean) {
+	def eat(dot:Dot, red_? : Boolean): Unit = {
 		val emp = if (red_?) emptyEatenByRed else emptyEatenByBlue
 		val bl = if (red_?) blueDefeated else blueActive
 		val rd = if (red_?) redDefeated else redActive

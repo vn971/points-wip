@@ -33,7 +33,7 @@ class AiEngineTest extends FunSuite with Loggable {
 	/**
 	 * test name is equal the the graphical game representation
 	 */
-	def testGame(s: String, m: PartialFunction[List[MoveResult], Unit]) {
+	def testGame(s: String, m: PartialFunction[List[MoveResult], Unit]): Unit = {
 		test(s.drop(2)) {
 			inside(play(s))(m)
 		}

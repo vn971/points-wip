@@ -19,12 +19,12 @@ class ChatComet extends CometActor with Loggable {
 
 	lazy val roomActor = AkkaManager.getRoom(this.name openOr "")
 
-	override protected def localSetup() {
+	override protected def localSetup(): Unit = {
 		roomActor ! AddChatSubscription(this)
 		super.localSetup()
 	}
 
-	override protected def localShutdown() {
+	override protected def localShutdown(): Unit = {
 		roomActor ! RemoveChatSubscription(this)
 		super.localShutdown()
 	}

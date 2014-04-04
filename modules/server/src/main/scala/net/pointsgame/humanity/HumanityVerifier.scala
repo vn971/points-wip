@@ -51,11 +51,11 @@ class MyHumanVerifier extends Loggable {
 
 	def isHuman: Boolean = (mod == 0)
 
-	def check(power: String) {
+	def check(power: String): Unit = {
 		if (!isHuman && power.matches("[0-9]{1,11}")) check(power.toInt)
 	}
 
-	def check(power: Int) {
+	def check(power: Int): Unit = {
 		if (!isHuman) {
 			val exp = longPower(base, power, mod)
 			if (exp <= acceptableLimit && power > 1) {
@@ -65,7 +65,7 @@ class MyHumanVerifier extends Loggable {
 		}
 	}
 
-	def check(powerList: Set[Int]) {
+	def check(powerList: Set[Int]): Unit = {
 		if (!isHuman &&
 			powerList.size > numberOfResultsToConfirm &&
 			powerList.forall { _ > 1 } &&

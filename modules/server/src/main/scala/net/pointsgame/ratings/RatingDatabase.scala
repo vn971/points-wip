@@ -15,7 +15,7 @@ trait RatingDatabaseComponent {
 	trait RatingDatabase {
 		def getAllUsers: List[DBUser]
 
-		def saveUser(userId: Long, newRating: Long, precision: Double)
+		def saveUser(userId: Long, newRating: Long, precision: Double): Unit
 
 		def gamesByUser(user: Long): List[RatingGameInfo]
 	}
@@ -30,7 +30,7 @@ class H2RatingDatabase extends RatingDatabaseComponent {
 		}
 
 
-		override def saveUser(userId: Long, newRating: Long, precision: Double) {
+		override def saveUser(userId: Long, newRating: Long, precision: Double): Unit = {
 			transaction {
 				users.update(u =>
 					where(u.id === userId)

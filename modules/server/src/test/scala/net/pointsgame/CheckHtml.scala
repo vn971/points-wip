@@ -18,7 +18,7 @@ class CheckHtml extends FunSuite {
 		}
 
 		var broken: List[java.io.File] = Nil
-		def collectBroken(file: java.io.File) {
+		def collectBroken(file: java.io.File): Unit = {
 			if (file.isDirectory) {
 				for (f <- file.listFiles) collectBroken(f)
 			}

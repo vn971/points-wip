@@ -17,7 +17,7 @@ class Room(val name: String) extends Actor with Loggable {
 	logger.info("room actor initialized")
 	protected var users = immutable.HashSet[DBUser]()
 
-	override def preStart() {}
+	override def preStart(): Unit = {}
 
 	def receive: Receive = {
 		case "" =>

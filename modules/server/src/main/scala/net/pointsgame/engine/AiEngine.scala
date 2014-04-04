@@ -110,7 +110,7 @@ class AiEngine(val sizeX: Int, val sizeY: Int) extends Loggable {
 				surroundingId += 1
 
 				@inline
-				def addBorder(from: Dot, to: Dot) {
+				def addBorder(from: Dot, to: Dot): Unit = {
 					minX = minX min to.x
 					maxX = maxX max to.x
 					minY = minY min to.x
@@ -131,7 +131,7 @@ class AiEngine(val sizeX: Int, val sizeY: Int) extends Loggable {
 					}
 				}
 
-				def addBorders(target: Dot) {
+				def addBorders(target: Dot): Unit = {
 					var d = target
 					var next = d.treeNext
 					while (d != realRoot) {
