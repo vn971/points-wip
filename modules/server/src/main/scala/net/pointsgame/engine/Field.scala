@@ -6,7 +6,6 @@ package net.pointsgame.engine
 
 import scala.collection.immutable
 import scala.collection.mutable.ListBuffer
-import scala.collection.immutable.VectorIterator
 
 
 protected class Field(val sizeX: Int, val sizeY: Int) {

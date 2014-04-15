@@ -1,7 +1,6 @@
 package net.pointsgame
 
 import java.util
-import net.liftweb.common.Loggable
 import org.scalatest._
 import ru.narod.vn91.pointsop.gameEngine.SingleGameEngine
 import ru.narod.vn91.pointsop.gameEngine.SingleGameEngineInterface.MoveResult
@@ -9,7 +8,7 @@ import ru.narod.vn91.pointsop.gameEngine.SingleGameEngineInterface.MoveResult._
 import scala.collection.JavaConversions._
 
 
-class OldSingleGameEngineTest extends FunSuite with Loggable {
+class OldSingleGameEngineTest extends FunSuite {
 
 	case class Dot(x: Int, y: Int, red_? : Boolean)
 
