@@ -7,7 +7,7 @@ package bootstrap.liftweb
 import java.util.Locale
 import net.liftweb.common._
 import net.liftweb.http._
-import net.liftweb.http.provider.HTTPCookie
+import net.liftweb.http.provider.{HTTPParam, HTTPCookie}
 import net.liftweb.sitemap.Loc._
 import net.liftweb.sitemap._
 import net.liftweb.util._
@@ -51,8 +51,6 @@ class Boot extends Loggable {
 				LiftRules.defaultLocaleCalculator(boxReq)
 			}
 
-		// set the sitemap.  Note if you don't want access control for
-		// each page, just comment this line out.
 		LiftRules.setSiteMap(sitemap)
 
 		//Show the spinny image when an Ajax call starts
@@ -62,6 +60,12 @@ class Boot extends Loggable {
 		// Make the spinny image go away when it ends
 		LiftRules.ajaxEnd =
 			Full(() ⇒ LiftRules.jsArtifacts.hide("ajax-loader").cmd)
+
+		LiftRules.supplimentalHeaders = _.addHeaders(
+			HTTPParam("X-Frame-Options", "DENY") ::
+					HTTPParam("Content-Security-Policy", "default-src 'self' 'unsafe-inline' 'unsafe-eval'") ::
+					Nil
+		)
 
 		// Force the request to be UTF-8
 		LiftRules.early.append(_.setCharacterEncoding("UTF-8"))
