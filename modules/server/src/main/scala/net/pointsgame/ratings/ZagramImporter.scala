@@ -29,7 +29,7 @@ object ZagramImporter extends Loggable {
 					split(0)
 				}
 			val date = formatter.parse(dateAsString).getTime
-			val whoWon = split(3) match {
+			val whoWon: StupidResult = split(3) match {
 				case "1" => FirstWon
 				case "2" => SecondWon
 				case _ => Draw

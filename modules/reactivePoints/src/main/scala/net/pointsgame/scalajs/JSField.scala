@@ -4,13 +4,22 @@
 
 package net.pointsgame.scalajs
 
+import net.pointsgame.scalajs.JSHelpers._
 import net.pointsgame.scalajs.PlayerGlobalVariables._
 import org.scalajs.dom
-import org.scalajs.dom.MouseEvent
+import org.scalajs.dom.{Element, MouseEvent}
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport
 import scalatags.SvgTags._
 import scalatags._
+
+//object ServerSide {
+//	val head_merge = "head_merge".tag
+//
+//	def renderHtml = {
+//		head_merge()
+//	}
+//}
 
 
 object PlayerGlobalVariables {
@@ -18,10 +27,12 @@ object PlayerGlobalVariables {
 	val offset = rx.Rx(PlayerGlobalVariables.gridSquareSize() / 3)
 
 	def coord(c: Int) = (offset() + c * gridSquareSize()).toString
-
-	val isIE = dom.navigator.appName.contains("Microsoft Internet Explorer")
 }
 
+
+object JSHelpers {
+	val isIE = dom.navigator.appName.contains("Microsoft Internet Explorer")
+}
 
 @JSExport
 object MyTestingEntryPoint {
@@ -60,17 +71,10 @@ class JSField(val sizeX: Int, val sizeY: Int, domId: String) {
 			).toString)
 
 	rx.Obs(gridSquareSize) {
+		println("reacting on gridSquareSize change")
 		rootDomElement.setAttribute(name = "height", value = totalHeight())
 		rootDomElement.setAttribute(name = "width", value = totalWidth())
-	}
 
-	def ieViewbox = if (isIE) {
-		Some("viewBox".attr := s"0 0.5 ${totalWidth()} ${totalHeight()}")
-	} else {
-		None
-	}
-
-	rx.Obs(gridSquareSize) {
 		val verticalGridLines = 0 until sizeX map { x =>
 			line(
 				"x1".attr := coord(x),
@@ -87,6 +91,13 @@ class JSField(val sizeX: Int, val sizeY: Int, domId: String) {
 				"x2".attr := totalWidth()
 			)
 		}
+
+		def ieViewbox = if (isIE) {
+			Some("viewBox".attr := s"0 0.5 ${totalWidth()} ${totalHeight()}")
+		} else {
+			None
+		}
+
 		val gridSvgToInsert = svg(
 			"height".attr := totalHeight(),
 			"width".attr := totalWidth(),
@@ -95,8 +106,8 @@ class JSField(val sizeX: Int, val sizeY: Int, domId: String) {
 			verticalGridLines
 		).toString()
 
-		selectorSetInnerHtml("#" + domId + " .gridLines", gridSvgToInsert)
 		//	jQuery.apply("#" + domId + " .gridLines").html(gridSvgToInsert)
+		selectorSetInnerHtml("#" + domId + " .gridLines", gridSvgToInsert)
 	}
 
 }
