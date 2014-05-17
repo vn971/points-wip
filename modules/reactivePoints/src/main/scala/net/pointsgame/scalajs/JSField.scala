@@ -7,7 +7,7 @@ package net.pointsgame.scalajs
 import net.pointsgame.scalajs.JSHelpers._
 import net.pointsgame.scalajs.PlayerGlobalVariables._
 import org.scalajs.dom
-import org.scalajs.dom.{Element, MouseEvent}
+import org.scalajs.dom.MouseEvent
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport
 import scalatags.SvgTags._

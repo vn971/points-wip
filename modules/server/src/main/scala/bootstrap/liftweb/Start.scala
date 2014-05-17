@@ -39,9 +39,6 @@ object Start extends App with Loggable {
 		} else {
 			context.getClass.getClassLoader.getResource("webapp").toExternalForm
 		}
-		//		val webappDir = sys.props.get("webapp.directory").getOrElse {
-		//			context.getClass.getClassLoader.getResource("webapp").toExternalForm
-		//		}
 		logger.info(s"using $webappDir as webappDir")
 
 		context.setWar(webappDir)

@@ -69,7 +69,6 @@ lazy val server = project.in(file("./modules/server/"))
 		).settings(
 			libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom, h2database, logback, akka, liftWebkit, jetty, squeryl, scalatest),
 			jarName in assembly := "pointsgame.jar",
-			// javaOptions += "-Dwebapp.directory=" + (sourceDirectory.value / "main" / "webapp").getPath,
 			webappDirectorySetting,
 			reStart <<= reStart dependsOn (optimizeJS in(reactivePoints, Compile, optimizeJS)),
 			// Revolver.enableDebugging(port = 5005, suspend = false),
