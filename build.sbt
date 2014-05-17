@@ -24,7 +24,7 @@ resolvers ++= Seq(
 
 lazy val scalatagsJs = "com.scalatags" %% "scalatags" % "0.2.5-JS"
 lazy val scalarxJs = "com.scalarx" %% "scalarx" % "0.2.4-JS"
-lazy val scalaJsDom = "org.scala-lang.modules.scalajs" %% "scalajs-dom" % "0.3"
+lazy val scalaJsDom = "org.scala-lang.modules.scalajs" %% "scalajs-dom" % "0.4"
 lazy val h2database = "com.h2database" % "h2" % "1.4.178"
 lazy val logback = "ch.qos.logback" % "logback-classic" % "1.1.2"
 lazy val akka = "com.typesafe.akka" %% "akka-actor" % "2.3.2"
@@ -33,7 +33,7 @@ lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-SNAPSHOT"
 lazy val jetty = "org.eclipse.jetty" % "jetty-webapp" % "9.1.3.v20140225"
 lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.6-RC2"
 lazy val scalatest = "org.scalatest" %% "scalatest" % "2.1.6" % "test"
-lazy val utest = "com.lihaoyi" % "utest_2.10" % "[0.1.4,)" % "test"
+lazy val utest = "com.lihaoyi" % "utest_2.10" % "0.1.4" % "test"
 lazy val scalaJQuery = "org.scala-lang.modules.scalajs" %% "scalajs-jquery" % "0.3"
 
 
