@@ -14,4 +14,7 @@
 /modules/*/project/project
 /modules/*/project/target
 
-/modules/*/local-dev-database*
+local-dev-database*
+
+#### scajaJs output
+/modules/server/src/main/webapp/js/reactivepoints-opt.js

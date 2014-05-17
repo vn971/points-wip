@@ -1,0 +1,33 @@
+<html>
+<head>
+	<title>Home</title>
+</head>
+
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=default;at=content">
+	<head_merge>
+		<link data-lift="with-resource-id" href="/css/JSField.css" rel="stylesheet" type="text/css"/>
+	</head_merge>
+
+	<div>
+		<button id="increaseFieldSize">+</button>
+		<button id="decreaseFieldSize">-</button>
+		<div id="field1">
+			<div class="gridLines"></div>
+		</div>
+
+		<hr/>
+		<div id="field2">
+			<div class="gridLines"></div>
+		</div>
+	</div>
+
+	<tail>
+		<script type="text/javascript" src="/js/reactivepoints-opt.js"></script>
+		<!--<script type="text/javascript" src="/js/reactivepoints-opt.js" data-lift="with-resource-id"></script>-->
+		<script> MyTestingEntryPoint().main(); </script>
+	</tail>
+
+</div>
+</body>
+</html>

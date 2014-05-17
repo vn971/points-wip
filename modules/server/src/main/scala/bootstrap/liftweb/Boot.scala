@@ -82,6 +82,7 @@ class Boot extends Loggable {
 		val globalMenu: List[ConvertableToMenu] =
 			List(
 				Menu.i("Home") / "index",
+				Menu.i("scalajs") / "scalajs",
 				Menu.i("NN - NN") / "gr" / * >> Hidden >>
 					If(goodRoom, "no such room") >> Loc.TemplateBox {
 						() ⇒ Templates("gameRoom" :: Nil)
