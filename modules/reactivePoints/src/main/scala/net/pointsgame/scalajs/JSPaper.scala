@@ -22,7 +22,16 @@ import scalatags._
 //}
 
 
+@JSExport
 object PlayerGlobalVariables {
+
+	@JSExport
+	def increaseFieldSize = { (e: MouseEvent) =>
+		println("+ start")
+		gridSquareSize() = gridSquareSize() + 1
+		println("+ end")
+	}
+
 	val gridSquareSize = rx.Var(20)
 	val offset = rx.Rx(PlayerGlobalVariables.gridSquareSize() / 3)
 
@@ -36,8 +45,8 @@ object JSHelpers {
 
 @JSExport
 object MyTestingEntryPoint {
-	val field1 = new JSField(25, 20, "field1")
-	val field2 = new JSField(15, 10, "field2")
+	val field1 = new JSPaper(25, 20, "field1")
+	val field2 = new JSPaper(15, 10, "field2")
 
 	@JSExport
 	def main(): Unit = {
@@ -55,7 +64,8 @@ object MyTestingEntryPoint {
 }
 
 
-class JSField(val sizeX: Int, val sizeY: Int, domId: String) {
+class JSPaper(val sizeX: Int, val sizeY: Int, domId: String) {
+	private var lastPoint: rx.Var[Option[(Int, Int)]] = rx.Var(None)
 
 	val rootDomElement = dom.document.getElementById(domId)
 

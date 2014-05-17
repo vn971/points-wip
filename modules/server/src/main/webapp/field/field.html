@@ -18,6 +18,15 @@
 	</div>
 
 	<tail>
+		<div style="display: none">
+			<!--load images in the background-->
+			<img src="/img/blue.png" data-lift="with-resource-id"/>
+			<img src="/img/red.png" data-lift="with-resource-id"/>
+			<img src="/img/red-right.png" data-lift="with-resource-id"/>
+			<img src="/img/red-bottom.png" data-lift="with-resource-id"/>
+			<img src="/img/blue-right.png" data-lift="with-resource-id"/>
+			<img src="/img/blue-bottom.png" data-lift="with-resource-id"/>
+		</div>
 		<script type="text/javascript">
 			var roomName = '1';
 			var fieldClickFunction = function(e) {
@@ -33,6 +42,10 @@
 			jQuery(document).ready(function() {
 				$("#mainField").click(fieldClickFunction);
 			});
+
+
+
+
 		</script>
 	</tail>
 </div>
