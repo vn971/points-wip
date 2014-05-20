@@ -29,7 +29,7 @@ lazy val h2database = "com.h2database" % "h2" % "1.4.178"
 lazy val logback = "ch.qos.logback" % "logback-classic" % "1.1.2"
 lazy val akka = "com.typesafe.akka" %% "akka-actor" % "2.3.2"
 lazy val fobo = "net.liftmodules" %% "fobo_3.0" % "1.2"
-lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-SNAPSHOT"
+lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-M0"
 lazy val jetty = "org.eclipse.jetty" % "jetty-webapp" % "9.1.3.v20140225"
 lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.6-RC2"
 lazy val scalatest = "org.scalatest" %% "scalatest" % "2.1.6" % "test"
@@ -51,11 +51,11 @@ lazy val webappDirectorySetting =
 
 lazy val reactivePoints = project.in(file("./modules/reactivePoints/")).
 		settings(
-			libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom)
+			scalaJSSettings: _*
 		).settings(
 			commonSettings: _*
 		).settings(
-			scalaJSSettings: _*
+			libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom)
 		)
 
 lazy val server = project.in(file("./modules/server/"))

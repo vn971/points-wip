@@ -5,13 +5,14 @@
 package net.pointsgame.ai
 
 import akka.actor._
+import net.liftweb.common.Loggable
 import net.pointsgame.lift.comet.PaperSingleton
 import net.pointsgame.lift.model._
 import ru.narod.vn91.pointsop.gameEngine.SingleGameEngine
 import ru.narod.vn91.pointsop.gameEngine.SingleGameEngineInterface
 import scala.collection.JavaConversions._
 
-class DuelWithEngine extends Actor with ActorLogging {
+class DuelWithEngine extends Actor with Loggable {
 
 	var surroundingsNumber = 0 // do not recalculate surroundings each time...
 	val engine = new SingleGameEngine(32, 32)
@@ -21,6 +22,7 @@ class DuelWithEngine extends Actor with ActorLogging {
 	}
 
 	def handleDot(x: Int,y: Int, red_? : Boolean): Unit = {
+		logger.trace("dot placed at [$x,$y]")
 			if (engine.canMakeMove(x + 1, y + 1)) {
 				engine.makeMove(x + 1, y + 1, red_?)
 				context.become(if (red_?) bluesTurn else redsTurn, discardOld = true)
@@ -52,6 +54,6 @@ class DuelWithEngine extends Actor with ActorLogging {
 	override def receive = bluesTurn
 
 	override def preStart(): Unit = {
-		log.info(s"starting actor with engine: $engine")
+		logger.info(s"starting actor with engine: $engine")
 	}
 }

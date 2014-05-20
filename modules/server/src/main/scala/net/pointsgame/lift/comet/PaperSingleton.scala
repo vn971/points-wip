@@ -11,9 +11,11 @@ import net.pointsgame.lift.model._
 
 object PaperSingleton extends LiftActor with ListenerManager with Logger {
 
+	case class ListPaperEvent(l: List[PaperEvent])
+
 	private var l: List[PaperEvent] = List()
 
-	protected def createUpdate = l
+	protected def createUpdate = ListPaperEvent(l)
 
 	override protected def lowPriority = {
 		case m: PaperEvent =>

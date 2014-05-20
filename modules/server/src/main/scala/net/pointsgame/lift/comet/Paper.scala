@@ -7,19 +7,21 @@ package net.pointsgame.lift.comet
 import net.liftweb.http._
 import net.liftweb.http.js._
 import net.liftweb.http.js.jquery.JqJsCmds.AppendHtml
-import net.pointsgame.lift.model.PaperDrawing._
 import net.pointsgame.lift.model._
+import net.pointsgame.lift.model.PaperDrawing._
+import net.pointsgame.lift.comet.PaperSingleton.ListPaperEvent
 import scala.xml.NodeSeq
 import scala.xml.NodeSeq._
+import net.liftweb.common.Loggable
 
-class Paper extends CometActor with CometListener {
+class Paper extends CometActor with CometListener with Loggable {
 	private var eventList: List[PaperEvent] = List()
 
 	override protected def registerWith = PaperSingleton
 
 	override def lowPriority = {
-		case m: List[_] =>
-			val newEventList = m.asInstanceOf[List[PaperEvent]]
+		case ListPaperEvent(newEventList) =>
+			logger.trace(newEventList)
 			val lastPrev = eventList.lastOption
 			val update = newEventList.view.reverse.
 					takeWhile(n => lastPrev.forall(_ != n)).

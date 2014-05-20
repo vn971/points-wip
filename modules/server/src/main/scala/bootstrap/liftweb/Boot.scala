@@ -61,9 +61,9 @@ class Boot extends Loggable {
 		LiftRules.ajaxEnd =
 			Full(() ⇒ LiftRules.jsArtifacts.hide("ajax-loader").cmd)
 
-		LiftRules.supplimentalHeaders = _.addHeaders(
-			HTTPParam("X-Frame-Options", "DENY") ::
-					HTTPParam("Content-Security-Policy", "default-src 'self' 'unsafe-inline' 'unsafe-eval'") ::
+		LiftRules.supplementalHeaders.default.set(
+			"X-Frame-Options" -> "DENY" ::
+					"Content-Security-Policy" -> "default-src 'self' 'unsafe-inline' 'unsafe-eval'" ::
 					Nil
 		)
 
