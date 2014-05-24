@@ -55,8 +55,8 @@ class Paper extends CometActor with CometListener with Loggable {
 	}
 
 	private def eventToJs(e: PaperEvent): JsCmd = {
-		val tuple = eventToHtml(e)
-		AppendHtml(tuple._1, tuple._2)
+		val (id, nodeSeq) = eventToHtml(e)
+		AppendHtml(id, nodeSeq)
 	}
 
 	def render = {
