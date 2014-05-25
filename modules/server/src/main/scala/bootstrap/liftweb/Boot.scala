@@ -21,6 +21,8 @@ import net.pointsgame.lift.rest.{ RestPages, MyRest }
 class Boot extends Loggable {
 	def boot(): Unit = {
 
+		logger.info("props will be taken from: " + Props.toTry.map(_.apply()))
+
 		LiftRules.addToPackages("net.pointsgame.lift") // where to search snippet
 
 		LiftRules.dispatch.append(MyRest)

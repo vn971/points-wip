@@ -13,8 +13,13 @@ import org.eclipse.jetty.webapp.WebAppContext
 
 
 object Start extends App with Loggable {
+	for {
+		argument <- args
+		if argument.startsWith("--run.mode=")
+	} System.setProperty("run.mode", argument.split('=').last)
 
 	LoggingAutoConfigurer()()
+
 	startLift()
 
 	/** Basic ways to start the jar are:
