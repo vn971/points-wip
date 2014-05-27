@@ -13,31 +13,6 @@ import scala.scalajs.js.annotation.JSExport
 import scalatags.SvgTags._
 import scalatags._
 
-//object ServerSide {
-//	val head_merge = "head_merge".tag
-//
-//	def renderHtml = {
-//		head_merge()
-//	}
-//}
-
-
-@JSExport
-object PlayerGlobalVariables {
-
-	@JSExport
-	def increaseFieldSize = { (e: MouseEvent) =>
-		println("+ start")
-		gridSquareSize() = gridSquareSize() + 1
-		println("+ end")
-	}
-
-	val gridSquareSize = rx.Var(20)
-	val offset = rx.Rx(PlayerGlobalVariables.gridSquareSize() / 3)
-
-	def coord(c: Int) = (offset() + c * gridSquareSize()).toString
-}
-
 
 object JSHelpers {
 	val isIE = dom.navigator.appName.contains("Microsoft Internet Explorer")
@@ -50,22 +25,14 @@ object MyTestingEntryPoint {
 
 	@JSExport
 	def main(): Unit = {
-		dom.document.getElementById("increaseFieldSize").onmousedown = { (e: MouseEvent) =>
-			println("+ start")
-			gridSquareSize() = gridSquareSize() + 1
-			println("+ end")
-		}
-		dom.document.getElementById("decreaseFieldSize").onmousedown = { (e: MouseEvent) =>
-			println("- start")
-			gridSquareSize() = math.max(0, gridSquareSize() - 1)
-			println("- end")
-		}
+				dom.document.getElementById("increaseFieldSize").onmousedown = increaseFieldSize
+				dom.document.getElementById("decreaseFieldSize").onmousedown = decreaseFieldSize
 	}
 }
 
 
 class JSPaper(val sizeX: Int, val sizeY: Int, domId: String) {
-	private var lastPoint: rx.Var[Option[(Int, Int)]] = rx.Var(None)
+	//	private var lastPoint: rx.Var[Option[(Int, Int)]] = rx.Var(None)
 
 	val rootDomElement = dom.document.getElementById(domId)
 
