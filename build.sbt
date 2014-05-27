@@ -10,7 +10,6 @@ lazy val commonSettings = Seq(
 	scalaVersion := "2.10.4",
 	scalacOptions ++= Seq("-unchecked", "-feature", "-Xfuture", "-Xcheckinit"), // , "-Xlint"
 	transitiveClassifiers in Global := Seq(Artifact.SourceClassifier), // don't download javadoc
-	fork in Test := true,
 	EclipseKeys.withSource := true // download sources for eclipse
 )
 
@@ -22,8 +21,8 @@ resolvers ++= Seq(
 // uncomment if you don't want to use your internet connection for SNAPSHOT updates:
 // offline:=true
 
-lazy val scalatagsJs = "com.scalatags" %% "scalatags" % "0.2.5-JS"
-lazy val scalarxJs = "com.scalarx" %% "scalarx" % "0.2.4-JS"
+lazy val scalatagsJs = "com.scalatags" %%% "scalatags" % "0.2.5"
+lazy val scalarxJs = "com.scalarx" %%% "scalarx" % "0.2.4"
 lazy val scalaJsDom = "org.scala-lang.modules.scalajs" %% "scalajs-dom" % "0.4"
 lazy val h2database = "com.h2database" % "h2" % "1.4.178"
 lazy val logback = "ch.qos.logback" % "logback-classic" % "1.1.2"
@@ -70,9 +69,10 @@ lazy val server = project.in(file("./modules/server/"))
 			libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom, h2database, logback, akka, liftWebkit, jetty, squeryl, scalatest),
 			jarName in assembly := "pointsgame.jar",
 			webappDirectorySetting,
-			reStart <<= reStart dependsOn (optimizeJS in(reactivePoints, Compile, optimizeJS)),
+			fork in Test := true,
+			reStart <<= reStart dependsOn (fullOptJS in(reactivePoints, Compile, fullOptJS)),
 			// Revolver.enableDebugging(port = 5005, suspend = false),
 			assembly <<= assembly dependsOn (test in Test)
 		)
 
-(crossTarget in(reactivePoints, Compile, optimizeJS)) := (sourceDirectory in(server, Compile)).value / "webapp" / "js"
+(crossTarget in(reactivePoints, Compile, fullOptJS)) := (sourceDirectory in(server, Compile)).value / "webapp" / "js"
