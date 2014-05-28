@@ -1,0 +1,22 @@
+
+This project has a Contributor License Agreement. You can do with the project everything GNU-AGPL allows you to, but if you want your changes to be merged into mainstream, your Pull Request must satisfy these rules:
+
+* Each pull request must be "signed-off" using standard GIT technology.
+
+* Each pull request must include a signature at the bottom of this file.
+
+* You grant to Vasya Novikov, the original author of the project, the right on your code to relicense and reuse the project under any official GNU license (including later versions of GPL, GNU-AGPL).
+
+
+By submitting this pull request which includes my name and email address
+(the email address may be in a non-robot readable format), I agree that the
+entirety of the contribution is my own original work, that there are no prior
+claims on this work including, but not limited to, any agreements I may have with
+my employer or other contracts, and that I grant the specified rights to the original author of the project (see below).
+
+
+####
+Name: ***** *****
+Email: *****@*****.***
+
+####
