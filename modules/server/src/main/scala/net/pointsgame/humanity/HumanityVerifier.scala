@@ -14,7 +14,7 @@ object Numbers extends Loggable {
 
 	// the user must calculate such a "power" that
 	// base^power (mod randomModule) < acceptableLimit
-	val base = 717 // prime number
+	val base = 719 // prime number
 	// 36636
 	def randomModule() = 59691 // 34000 + Random.nextInt(30000) // must be < 2^31
 	val acceptableLimit = 111 // the smaller -- the harder
