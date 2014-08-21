@@ -22,7 +22,7 @@ class DuelWithEngine extends Actor with Loggable {
 	}
 
 	def handleDot(x: Int,y: Int, red_? : Boolean): Unit = {
-		logger.trace("dot placed at [$x,$y]")
+		logger.trace(s"dot placed at [$x,$y]")
 			if (engine.canMakeMove(x + 1, y + 1)) {
 				engine.makeMove(x + 1, y + 1, red_?)
 				context.become(if (red_?) bluesTurn else redsTurn, discardOld = true)
