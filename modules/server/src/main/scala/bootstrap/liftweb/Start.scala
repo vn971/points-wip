@@ -18,7 +18,7 @@ object Start extends App with Loggable {
 		if argument.startsWith("--run.mode=")
 	} System.setProperty("run.mode", argument.split('=').last)
 
-	LoggingAutoConfigurer()()
+	LoggingAutoConfigurer().apply()
 
 	startLift()
 

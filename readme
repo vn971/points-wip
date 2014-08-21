@@ -8,16 +8,20 @@ squeryl as a database wrapper (ORM),
 scalatest as a testing framework,
 git as a version control system,
 
-All code is written in english.
-Documentation, ToDos and other such stuff is written in russian right now.
-If a non-russian-speaking developer would be interested to join the project
-we'll be interested to translate the info and keep it in english afterwards.
+It is WIP (work in progress), many things may change.
 
 Pull requests and questions are welcomed.:)
 The technologies used in the project are really cool and modern -- this
 might be the main motivation for experienced developers to join.
 Another motive may be to write the server itself, for people interested in points game.
-All info below is in russian.
+
+
+==== About English and Russian in the project ====
+
+All code is written in english.
+Documentation, ToDos and other such stuff is written in russian right now.
+If a non-russian-speaking developer would be interested to join the project
+we'll be interested to translate such info and keep it in english afterwards.
 
 ====
 
@@ -26,10 +30,3 @@ Points Server -- это сервер для игры Точки.
 Общее описание сервера и его особенностей дано выше на английском.
 Мы же сразу перейдём к текущему описанию сервера, нашим идеям и целям:
 ./doc/about.txt
-
-
-NOTICE 2014-03-12
-
-The server IS open-sourced but is NOT really ready yet.
-Please, don't spend too much time looking in it -- many things will change in near future.
-I'll remove/edit this notice once the server will be closer to being ready.

@@ -28,13 +28,13 @@ lazy val fobo = "net.liftmodules" %% "fobo_3.0" % "1.2"
 lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-M1"
 lazy val jetty = "org.eclipse.jetty" % "jetty-webapp" % "9.1.3.v20140225"
 lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.6-RC2"
-lazy val scalatest = "org.scalatest" %% "scalatest" % "2.1.6" % "test"
+lazy val scalatest = "org.scalatest" %% "scalatest" % "2.1.6" % Test
 
 lazy val scalatagsJs = "com.scalatags" %%% "scalatags" % "0.2.5"
 lazy val scalarxJs = "com.scalarx" %%% "scalarx" % "0.2.4"
 lazy val scalaJsDom = "org.scala-lang.modules.scalajs" %% "scalajs-dom" % "0.4"
 lazy val scalaJQuery = "org.scala-lang.modules.scalajs" %% "scalajs-jquery" % "0.3"
-lazy val utest = "com.lihaoyi" % "utest_2.10" % "0.1.4" % "test"
+lazy val utest = "com.lihaoyi" %% "utest" % "0.1.6" % Test
 
 
 lazy val webappDirectorySetting =
