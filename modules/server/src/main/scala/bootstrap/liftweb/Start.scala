@@ -50,7 +50,7 @@ object Start extends App with Loggable {
 
 		server.setHandler(context)
 		server.start()
-		logger.info("Lift server started")
+		logger.info(s"Lift server started, address is http://localhost:$port/")
 	}
 
 }
