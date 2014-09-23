@@ -34,7 +34,7 @@ lazy val scalatagsJs = "com.scalatags" %%% "scalatags" % "0.2.5"
 lazy val scalarxJs = "com.scalarx" %%% "scalarx" % "0.2.4"
 lazy val scalaJsDom = "org.scala-lang.modules.scalajs" %% "scalajs-dom" % "0.4"
 lazy val scalaJQuery = "org.scala-lang.modules.scalajs" %% "scalajs-jquery" % "0.3"
-lazy val utest = "com.lihaoyi" %% "utest" % "0.1.6" % Test
+lazy val utest = "com.lihaoyi" %% "utest" % "0.2.3" % Test
 
 
 lazy val webappDirectorySetting =
@@ -49,24 +49,27 @@ lazy val webappDirectorySetting =
 		}
 	}
 
-lazy val reactivePoints = project.in(file("./modules/reactivePoints/")).
-		settings(
-			scalaJSSettings: _*
-		).settings(
-			commonSettings: _*
-		).settings(
-			libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom)
-		)
+lazy val reactivePoints = project.in(file("./modules/reactivePoints/"))
+		.settings(scalaJSSettings: _*)
+		.settings(commonSettings: _*)
+		.settings(libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom))
+
+lazy val humanityVerifier = project.in(file("./modules/humanityVerifier"))
+		.settings(commonSettings: _*)
+		.settings(libraryDependencies ++= Seq(utest))
+		.settings(testFrameworks += new TestFramework("utest.runner.JvmFramework"))
+
+lazy val gameEngine = project.in(file("./modules/gameEngine"))
+		.settings(commonSettings: _*)
+		.settings(libraryDependencies ++= Seq(scalatest))
+
 
 lazy val server = project.in(file("./modules/server/"))
-		.dependsOn(reactivePoints)
+		.dependsOn(reactivePoints, gameEngine)
+		.settings(commonSettings: _*)
+		.settings(sbtassembly.Plugin.assemblySettings: _*)
+		.settings(Revolver.settings.settings: _*)
 		.settings(
-			commonSettings: _*
-		).settings(
-			sbtassembly.Plugin.assemblySettings: _*
-		).settings(
-			Revolver.settings.settings: _*
-		).settings(
 			libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom, h2database, logback, akka, liftWebkit, jetty, squeryl, scalatest),
 			jarName in assembly := "pointsgame.jar",
 			webappDirectorySetting,

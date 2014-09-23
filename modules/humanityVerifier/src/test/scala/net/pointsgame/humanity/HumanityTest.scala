@@ -2,24 +2,26 @@ package net.pointsgame.humanity
 
 import net.pointsgame.humanity.Helper.{longPower => power}
 import net.pointsgame.humanity.Numbers.base
-import org.scalatest.FunSuite
+import utest._
 
 
-class HumanityTest extends FunSuite {
-	test("test") {
-		val verifierClass = HumanityVerifier.is
+object HumanityTest extends TestSuite {
+	val tests = TestSuite {
+
+	'verifier_correctness {
+		val verifierClass = new MyHumanVerifier()
 		val mod = verifierClass.mod
 		var power = 1
 		var remainder = base
 		while (remainder >= Numbers.acceptableLimit && !verifierClass.isHuman) {
-			assert(power < 10000, "humanity takes too long to test, aborting")
+			assert(power < 10000) // otherwise considered too long
 			remainder = (remainder * base) % mod
 			power += 1
 			verifierClass.check(power)
 		}
 	}
 
-	test("power tests") {
+	'power_operator_examples {
 		assert(power(1, 1, 1000) == 1)
 		assert(power(1, 2, 1000) == 1)
 		assert(power(1, 10, 1000) == 1)
@@ -36,6 +38,7 @@ class HumanityTest extends FunSuite {
 		assert(power(2, 100, 3) == 1)
 		assert(power(2, 101, 3) == 2)
 		assert(power(2, 1000000000, 3) == 1)
+	}
 	}
 
 }

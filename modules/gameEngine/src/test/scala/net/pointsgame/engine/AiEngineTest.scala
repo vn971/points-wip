@@ -1,12 +1,11 @@
 package net.pointsgame.engine
 
 import java.util
-import net.liftweb.common.Loggable
 import org.scalatest.Inside._
 import org.scalatest._
 import scala.collection.JavaConversions._
 
-class AiEngineTest extends FunSuite with Loggable {
+class AiEngineTest extends FunSuite {
 
 	case class Dot(x: Int, y: Int, red_? : Boolean)
 

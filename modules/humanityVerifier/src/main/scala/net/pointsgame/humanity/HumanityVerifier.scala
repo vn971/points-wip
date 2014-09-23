@@ -1,16 +1,10 @@
-// This project is licensed under GPL, version 3 or later. See license.txt for more details.
-//
-// Copyright: Vasya Novikov 2013-2014.
-
 package net.pointsgame.humanity
 
-import net.liftweb.common.Loggable
-import net.liftweb.http.SessionVar
 
 /** "base" and "randomModule" have to be coprime
  *  this is true with a very high probability
  */
-object Numbers extends Loggable {
+object Numbers {
 
 	// the user must calculate such a "power" that
 	// base^power (mod randomModule) < acceptableLimit
@@ -42,14 +36,14 @@ object Helper {
 	}
 }
 
-class MyHumanVerifier extends Loggable {
+class MyHumanVerifier {
 
 	import net.pointsgame.humanity.Helper._
 	import net.pointsgame.humanity.Numbers._
 
 	var mod = Numbers.randomModule()
 
-	def isHuman: Boolean = (mod == 0)
+	def isHuman: Boolean = { mod == 0 }
 
 	def check(power: String): Unit = {
 		if (!isHuman && power.matches("[0-9]{1,11}")) check(power.toInt)
@@ -60,7 +54,7 @@ class MyHumanVerifier extends Loggable {
 			val exp = longPower(base, power, mod)
 			if (exp <= acceptableLimit && power > 1) {
 				mod = 0
-				logger.debug("Confirmed that he is a human.")
+				println("Confirmed that he is a human.")
 			}
 		}
 	}
@@ -75,5 +69,3 @@ class MyHumanVerifier extends Loggable {
 		}
 	}
 }
-
-object HumanityVerifier extends SessionVar[MyHumanVerifier](new MyHumanVerifier)

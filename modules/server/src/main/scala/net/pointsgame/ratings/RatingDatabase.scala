@@ -7,7 +7,6 @@ package net.pointsgame.ratings
 import net.pointsgame.db.DBLibrary._
 import net.pointsgame.db.DBUser
 import net.pointsgame.db.Pointsgame._
-import scala.Some
 
 trait RatingDatabaseComponent {
 	def ratingDatabase: RatingDatabase

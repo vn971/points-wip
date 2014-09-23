@@ -6,9 +6,8 @@ package net.pointsgame.ratings
 
 import scala.concurrent.duration._
 import _root_.scala.math._
-import net.liftweb.common.Loggable
 
-object RatingConstants extends Loggable {
+object RatingConstants {
 
 	private lazy val defHumanRating = 700
 	private lazy val minHumanRating = 300

@@ -4,7 +4,6 @@
 
 package net.pointsgame.engine
 
-import net.liftweb.common.Loggable
 import scala.collection.mutable
 
 // This class needs to be very quick.
@@ -13,7 +12,7 @@ import scala.collection.mutable
 /**
  * this class is not thread-safe
  */
-class AiEngine(val sizeX: Int, val sizeY: Int) extends Loggable {
+class AiEngine(val sizeX: Int, val sizeY: Int) {
 	var surroundingId = 0
 
 	val field = new Field(sizeX, sizeY)
