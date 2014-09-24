@@ -66,6 +66,7 @@
 <body>
 <div class="container-deleted">
 	<div class="alt" style="text-align: center">
+		<form data-lift="form.ajax">
 			<table width="100%" style="height: 1em; width: 100%">
 				<tr>
 					<td style="text-align: left">
@@ -77,10 +78,13 @@
 						     src="../img/ajax-loader.gif"/>
 					</td>
 					<td style="text-align: right; width: 100%">
-						MyName
+						Logged in as: ???. Change name:
 					</td>
+					<td width="100%"><input data-lift="UsernameChanger" id="usernameChangerInput" /></td>
+					<td><input type="submit" value="ok" /></td>
 				</tr>
 			</table>
+		</form>
 		<!--<img src="/img/pointsgame.net.logo.jpg" alt="" style="height=0.9em; width=0.9em"/>-->
 	</div>
 

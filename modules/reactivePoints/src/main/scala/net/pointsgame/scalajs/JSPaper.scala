@@ -78,6 +78,7 @@ class JSPaper(val sizeX: Int, val sizeY: Int, domId: String) {
 		val gridSvgToInsert = svg(
 			"height".attr := totalHeight(),
 			"width".attr := totalWidth(),
+			Styles.border := "1px solid #EEEEEE",
 			ieViewbox,
 			horizontalGridLines,
 			verticalGridLines
