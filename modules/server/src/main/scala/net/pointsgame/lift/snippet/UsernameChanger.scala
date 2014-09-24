@@ -1,10 +1,8 @@
 package net.pointsgame.lift.snippet
 
 import net.liftweb.common.Loggable
-import net.liftweb.http._
 import net.liftweb.http.js.JsCmds._
 import net.liftweb.http.js._
-import net.pointsgame.actor.AkkaManager
 import net.pointsgame.db.Message
 import net.pointsgame.helpers.HtmlHelpers
 import net.pointsgame.lift.liftvar.{UserSession, UserSessionVar}

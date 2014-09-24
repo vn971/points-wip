@@ -1,8 +1,7 @@
-package net.pointsgame
+package ru.narod.vn91.pointsop.gameEngine
 
 import java.util
 import org.scalatest._
-import ru.narod.vn91.pointsop.gameEngine.SingleGameEngine
 import ru.narod.vn91.pointsop.gameEngine.SingleGameEngineInterface.MoveResult
 import ru.narod.vn91.pointsop.gameEngine.SingleGameEngineInterface.MoveResult._
 import scala.collection.JavaConversions._
