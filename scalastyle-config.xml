@@ -8,7 +8,7 @@
  </check>
  <check level="warning" class="org.scalastyle.file.HeaderMatchesChecker" enabled="true">
   <parameters>
-   <parameter name="header"><![CDATA[// This project is licensed under GPL, version 3 or later. See license.txt for more details.
+   <parameter name="header"><![CDATA[// This project is licensed under AGPL v3. See license.txt for more details.
 //
 // Copyright: Vasya Novikov 2013-2014.]]></parameter>
   </parameters>

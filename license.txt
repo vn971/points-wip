@@ -1,4 +1,4 @@
-This project is licenesed under GNU Affero GPL version 3 of the License.
+This project is licensed under GNU Affero GPL version 3 of the License.
 
 Reasoning why this particular project uses GNU-AGPL can be read here: http://www.gnu.org/licenses/why-affero-gpl.html
 Copyright: Vasya Novikov.
