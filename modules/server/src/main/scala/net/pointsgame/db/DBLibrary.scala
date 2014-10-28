@@ -5,7 +5,7 @@ import net.pointsgame.db.Pointsgame._
 import net.pointsgame.ratings.RatingConstants.defaultRating
 import net.pointsgame.ratings.RatingUserInfo
 import org.squeryl.{KeyedEntity, Schema}
-import scala.Some
+
 
 case class DBUser(
 		id: Long = 0L,
@@ -13,8 +13,7 @@ case class DBUser(
 		rating: Long = defaultRating,
 		ratingPrecision: Double = 1.0
 		)
-		extends KeyedEntity[Long]
-		with RatingUserInfo {
+		extends KeyedEntity[Long] {
 	val lowerCase: String = name.toLowerCase
 }
 

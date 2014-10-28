@@ -26,16 +26,5 @@ object HtmlHelpers extends Loggable {
 
 
 trait SeqMemoize[T] extends (T => NodeSeq) {
-
 	def list(seq: Seq[T]): NodeSeq => NodeSeq
-
-	def apply(t: T): NodeSeq
-}
-
-
-@deprecated("use seqMemoize instead", "0.0")
-trait Memoize[T] extends (T => (NodeSeq => NodeSeq)) {
-	def apply(t: T): NodeSeq => NodeSeq
-
-	def applyAgain(t: T): NodeSeq
 }

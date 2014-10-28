@@ -1,7 +1,7 @@
 package net.pointsgame.ratings
 
 import scala.concurrent.duration._
-import _root_.scala.math._
+import scala.math._
 
 object RatingConstants {
 

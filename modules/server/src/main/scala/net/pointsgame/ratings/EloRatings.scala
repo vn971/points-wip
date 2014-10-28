@@ -1,10 +1,10 @@
 package net.pointsgame.ratings
 
-trait RatingUserInfo {
-		def id: Long
-		def name: String
-		def ratingPrecision: Double
-}
+case class RatingUserInfo(
+		id: Long,
+		name: String,
+		ratingPrecision: Double
+		)
 
 case class RatingGameInfo(
 		first: RatingUserInfo, second: RatingUserInfo,
