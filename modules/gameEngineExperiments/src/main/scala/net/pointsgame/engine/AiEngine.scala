@@ -3,7 +3,7 @@ package net.pointsgame.engine
 import scala.collection.mutable
 
 // This class needs to be very quick.
-// Nulls and other ugly stuff is used here.
+// Nulls and other ugly stuff are used here.
 
 /**
  * this class is not thread-safe

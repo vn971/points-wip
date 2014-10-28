@@ -63,6 +63,10 @@ lazy val gameEngine = project.in(file("./modules/gameEngine"))
 		.settings(commonSettings: _*)
 		.settings(libraryDependencies ++= Seq(scalatest))
 
+lazy val gameEngineExperiments = project.in(file("./modules/gameEngineExperiments"))
+		.settings(commonSettings: _*)
+		.settings(libraryDependencies ++= Seq(scalatest))
+
 
 lazy val server = project.in(file("./modules/server/"))
 		.dependsOn(reactivePoints, gameEngine)
