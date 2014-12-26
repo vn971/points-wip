@@ -68,8 +68,8 @@ lazy val gameEngineExperiments = project.in(file("./modules/gameEngineExperiment
 		.settings(libraryDependencies ++= Seq(scalatest))
 
 
-lazy val server = project.in(file("./modules/server/"))
-		.dependsOn(reactivePoints, gameEngine)
+lazy val liftServer = project.in(file("./modules/liftServer/"))
+		.dependsOn(gameEngine)
 		.settings(commonSettings: _*)
 		.settings(sbtassembly.Plugin.assemblySettings: _*)
 		.settings(Revolver.settings.settings: _*)
@@ -83,5 +83,5 @@ lazy val server = project.in(file("./modules/server/"))
 			assembly <<= assembly dependsOn (test in Test)
 		)
 
-(crossTarget in(reactivePoints, Compile, fullOptJS)) := (sourceDirectory in(server, Compile)).value / "webapp" / "js"
+(crossTarget in(reactivePoints, Compile, fullOptJS)) := (sourceDirectory in(liftServer, Compile)).value / "webapp" / "js"
 
