@@ -4,7 +4,7 @@ It’s written in Scala language, using
 Liftweb as a web framework,
 SBT as a build tool,
 akka as the main actor system (http://en.wikipedia.org/wiki/Actor_model),
-squeryl as a database wrapper (ORM),
+squeryl as a database wrapper (ORM/DSL),
 scalatest as a testing framework,
 git as a version control system,
 
