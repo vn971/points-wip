@@ -49,26 +49,26 @@ lazy val webappDirectorySetting =
 		}
 	}
 
-lazy val reactivePoints = project.in(file("./modules/reactivePoints/"))
+lazy val reactivePoints = project.in(file("./modules/reactive-points/"))
 		.settings(scalaJSSettings: _*)
 		.settings(commonSettings: _*)
 		.settings(libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom))
 
-lazy val humanityVerifier = project.in(file("./modules/humanityVerifier"))
+lazy val humanityVerifier = project.in(file("./modules/humanity-verifier"))
 		.settings(commonSettings: _*)
 		.settings(libraryDependencies ++= Seq(utest))
 		.settings(testFrameworks += new TestFramework("utest.runner.JvmFramework"))
 
-lazy val gameEngine = project.in(file("./modules/gameEngine"))
+lazy val gameEngine = project.in(file("./modules/game-engine"))
 		.settings(commonSettings: _*)
 		.settings(libraryDependencies ++= Seq(scalatest))
 
-lazy val gameEngineExperiments = project.in(file("./modules/gameEngineExperiments"))
+lazy val gameEngineExperiments = project.in(file("./modules/game-engine-experiments"))
 		.settings(commonSettings: _*)
 		.settings(libraryDependencies ++= Seq(scalatest))
 
 
-lazy val liftServer = project.in(file("./modules/liftServer/"))
+lazy val liftServer = project.in(file("./modules/lift-server/"))
 		.dependsOn(gameEngine)
 		.settings(commonSettings: _*)
 		.settings(sbtassembly.Plugin.assemblySettings: _*)
