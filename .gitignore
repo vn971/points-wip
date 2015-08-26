@@ -1,4 +1,4 @@
-#### ide's
+#### IDE-s
 /.cache
 /.classpath
 /.ensime
@@ -7,12 +7,7 @@
 /.settings
 
 #### sbt output
-/target
-/project/project
-/project/target
-/modules/*/target
-/modules/*/project/project
-/modules/*/project/target
+target/
 
 local-dev-database*
 
