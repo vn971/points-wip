@@ -12,4 +12,7 @@ target/
 local-dev-database*
 
 #### scajaJs output
-/modules/server/src/main/webapp/js/reactivepoints-opt.js
+*opt.js
+*opt.js.map
+*-jsdeps.js
+*-jsdeps.min.js

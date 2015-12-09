@@ -1,13 +1,9 @@
 import sbtassembly.Plugin.AssemblyKeys._
-import scala.scalajs.sbtplugin.ScalaJSPlugin._
-import scala.scalajs.sbtplugin.ScalaJSPlugin.ScalaJSKeys._
-import spray.revolver.RevolverPlugin.Revolver
-import spray.revolver.RevolverPlugin.Revolver._
 
 lazy val commonSettings = Seq(
 	version := "1.0",
-	scalaVersion := "2.10.4",
-	scalacOptions ++= Seq("-unchecked", "-feature", "-Xfuture", "-Xcheckinit"), // , "-Xlint"
+	scalaVersion := "2.11.7",
+	scalacOptions ++= Seq("-unchecked", "-feature", "-deprecation", "-Xfuture", "-Xcheckinit"),
 	transitiveClassifiers in Global := Seq(Artifact.SourceClassifier), // don't download javadoc
 	EclipseKeys.withSource := true // download sources for eclipse
 )
@@ -24,16 +20,12 @@ lazy val h2database = "com.h2database" % "h2" % "1.4.178"
 lazy val logback = "ch.qos.logback" % "logback-classic" % "1.1.2"
 lazy val akka = "com.typesafe.akka" %% "akka-actor" % "2.3.2"
 lazy val fobo = "net.liftmodules" %% "fobo_3.0" % "1.2"
-lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-M1"
+lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-M7"
 lazy val jetty = "org.eclipse.jetty" % "jetty-webapp" % "9.1.3.v20140225"
-lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.6-RC2"
+lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.6-RC4"
 lazy val scalatest = "org.scalatest" %% "scalatest" % "2.1.6" % Test
-
-lazy val scalatagsJs = "com.scalatags" %%% "scalatags" % "0.2.5"
-lazy val scalarxJs = "com.scalarx" %%% "scalarx" % "0.2.4"
-lazy val scalaJsDom = "org.scala-lang.modules.scalajs" %% "scalajs-dom" % "0.4"
-lazy val scalaJQuery = "org.scala-lang.modules.scalajs" %% "scalajs-jquery" % "0.3"
 lazy val utest = "com.lihaoyi" %% "utest" % "0.2.3" % Test
+lazy val sjsDomLib = "0.8.2"
 
 
 lazy val webappDirectorySetting =
@@ -48,10 +40,15 @@ lazy val webappDirectorySetting =
 		}
 	}
 
-lazy val reactivePoints = project.in(file("./modules/reactive-points/"))
-		.settings(scalaJSSettings: _*)
+lazy val root = project.in(file("."))
+	.aggregate(liftServer)
+
+lazy val scalajsModule = project.in(file("./modules/scalajs"))
+		.enablePlugins(ScalaJSPlugin)
 		.settings(commonSettings: _*)
-		.settings(libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom))
+		.settings(libraryDependencies += "com.lihaoyi" %%% "scalarx" % "0.2.8")
+		.settings(libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.5.3")
+		.settings(libraryDependencies += "org.scala-js" %%% "scalajs-dom" % sjsDomLib)
 
 lazy val humanityVerifier = project.in(file("./modules/humanity-verifier"))
 		.settings(commonSettings: _*)
@@ -71,16 +68,15 @@ lazy val liftServer = project.in(file("./modules/lift-server/"))
 		.dependsOn(gameEngine)
 		.settings(commonSettings: _*)
 		.settings(sbtassembly.Plugin.assemblySettings: _*)
-		.settings(Revolver.settings.settings: _*)
+		.settings(Revolver.settings)
 		.settings(
-			libraryDependencies ++= Seq(scalarxJs, scalatagsJs, scalaJsDom, h2database, logback, akka, liftWebkit, jetty, squeryl, scalatest),
+			libraryDependencies ++= Seq(h2database, logback, akka, liftWebkit, jetty, squeryl, scalatest),
 			jarName in assembly := "pointsgame.jar",
 			webappDirectorySetting,
 			fork in Test := true,
-			reStart <<= reStart dependsOn (fullOptJS in(reactivePoints, Compile, fullOptJS)),
+			Revolver.reStart <<= Revolver.reStart dependsOn (fullOptJS in(scalajsModule, Compile, fullOptJS)),
 			// Revolver.enableDebugging(port = 5005, suspend = false),
 			assembly <<= assembly dependsOn (test in Test)
 		)
 
-(crossTarget in(reactivePoints, Compile, fullOptJS)) := (sourceDirectory in(liftServer, Compile)).value / "webapp" / "js"
-
+(crossTarget in(scalajsModule, Compile, fullOptJS)) := (sourceDirectory in(liftServer, Compile)).value / "webapp" / "js"

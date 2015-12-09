@@ -10,7 +10,7 @@ class AiEngineTest extends FunSuite {
 	case class Dot(x: Int, y: Int, red_? : Boolean)
 
 	def constructGame(image: String) = {
-		val lines = image.stripMargin.linesIterator.toArray.filter(_.nonEmpty)
+		val lines = image.stripMargin.lines.toArray.filter(_.nonEmpty)
 
 		val moves = new util.TreeMap[Char, Dot]()
 		for (y <- lines.indices; x <- lines(y).indices) {
