@@ -9,7 +9,6 @@ import ru.narod.vn91.pointsop.gameEngine.SingleGameEngineInterface
 import scala.xml._
 
 
-
 object GameDrawer extends Loggable {
 
 	case class SgfGame(sizeX: Int, sizeY: Int, moves: Seq[(Boolean, Int, Int)])
@@ -40,7 +39,6 @@ object GameDrawer extends Loggable {
 	def render(xml: NodeSeq): NodeSeq = {
 		getSgf(xml).dmap(<strong>data parsing error</strong>: NodeSeq) {
 			sgf =>
-
 				val pixelSizeX = (sgf.sizeX - 1) * gridSquareWidth + offset * 2
 				val pixelSizeY = (sgf.sizeY - 1) * gridSquareWidth + offset * 2
 				val widthHeightStyle = s"width: ${pixelSizeX}px; height: ${pixelSizeY}px;"

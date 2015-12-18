@@ -1,7 +1,7 @@
 package net.pointsgame.scalajs
 
-import scala.scalajs.js.annotation._
 import org.scalajs.dom.MouseEvent
+import scala.scalajs.js.annotation._
 
 @JSExport
 object PlayerGlobalVariables {

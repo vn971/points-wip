@@ -19,7 +19,7 @@ class Boot extends Loggable {
 
 		logger.info("props will be taken from: " + Props.toTry.map(_.apply()))
 
-		LiftRules.addToPackages("net.pointsgame.lift") // where to search snippet
+		LiftRules.addToPackages("net.pointsgame.lift") // where to search for lift snippets
 
 		LiftRules.dispatch.append(MyRest)
 		LiftRules.dispatch.append(RestPages)

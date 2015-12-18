@@ -2,8 +2,8 @@ package net.pointsgame.lift.snippet
 
 import net.liftweb.common.Loggable
 import net.liftweb.http._
-import net.liftweb.util.CssSel
 import net.liftweb.util.Helpers._
+import net.liftweb.util.{CssSel, Props}
 
 class SimpleSnippets extends Loggable {
 
@@ -19,5 +19,13 @@ class SimpleSnippets extends Loggable {
 	}
 
 	def lang = "* *" #> S.locale.toString
+
+	def scalajsSuffix = "* [src+]" #> LiftRules.attachResourceId {
+		if (Props.productionMode) {
+			"-opt.js"
+		} else {
+			"-fastopt.js"
+		}
+	}
 
 }

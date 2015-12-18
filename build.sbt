@@ -4,8 +4,7 @@ lazy val commonSettings = Seq(
 	version := "1.0",
 	scalaVersion := "2.11.7",
 	scalacOptions ++= Seq("-unchecked", "-feature", "-deprecation", "-Xfuture", "-Xcheckinit"),
-	transitiveClassifiers in Global := Seq(Artifact.SourceClassifier), // don't download javadoc
-	EclipseKeys.withSource := true // download sources for eclipse
+	transitiveClassifiers in Global := Seq(Artifact.SourceClassifier) // don't download javadoc
 )
 
 
@@ -20,11 +19,11 @@ lazy val h2database = "com.h2database" % "h2" % "1.4.178"
 lazy val logback = "ch.qos.logback" % "logback-classic" % "1.1.2"
 lazy val akka = "com.typesafe.akka" %% "akka-actor" % "2.3.2"
 lazy val fobo = "net.liftmodules" %% "fobo_3.0" % "1.2"
-lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-M7"
+lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-M6"
 lazy val jetty = "org.eclipse.jetty" % "jetty-webapp" % "9.1.3.v20140225"
 lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.6-RC4"
 lazy val scalatest = "org.scalatest" %% "scalatest" % "2.1.6" % Test
-lazy val utest = "com.lihaoyi" %% "utest" % "0.2.3" % Test
+lazy val utest = "com.lihaoyi" %% "utest" % "0.3.1" % Test
 lazy val sjsDomLib = "0.8.2"
 
 
