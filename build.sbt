@@ -1,12 +1,7 @@
-import sbtassembly.Plugin.AssemblyKeys._
 
-lazy val commonSettings = Seq(
-	version := "1.0",
-	scalaVersion := "2.11.7",
-	scalacOptions ++= Seq("-unchecked", "-feature", "-deprecation", "-Xfuture", "-Xcheckinit"),
-	transitiveClassifiers in Global := Seq(Artifact.SourceClassifier) // don't download javadoc
-)
-
+version in ThisBuild := "1.0"
+scalaVersion in ThisBuild := "2.11.8"
+scalacOptions in ThisBuild ++= Seq("-unchecked", "-feature", "-deprecation", "-Xfuture", "-Xcheckinit")
 
 resolvers ++= Seq(
 	"Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
@@ -44,36 +39,30 @@ lazy val root = project.in(file("."))
 
 lazy val scalajsModule = project.in(file("./modules/scalajs"))
 		.enablePlugins(ScalaJSPlugin)
-		.settings(commonSettings: _*)
 		.settings(libraryDependencies += "com.lihaoyi" %%% "scalarx" % "0.2.8")
 		.settings(libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.5.3")
 		.settings(libraryDependencies += "org.scala-js" %%% "scalajs-dom" % sjsDomLib)
 
 lazy val humanityVerifier = project.in(file("./modules/humanity-verifier"))
-		.settings(commonSettings: _*)
 		.settings(libraryDependencies ++= Seq(utest))
 		.settings(testFrameworks += new TestFramework("utest.runner.JvmFramework"))
 
 lazy val gameEngine = project.in(file("./modules/game-engine"))
-		.settings(commonSettings: _*)
 		.settings(libraryDependencies ++= Seq(scalatest))
 
 lazy val gameEngineExperiments = project.in(file("./modules/game-engine-experiments"))
-		.settings(commonSettings: _*)
 		.settings(libraryDependencies ++= Seq(scalatest))
 
 
 lazy val liftServer = project.in(file("./modules/lift-server/"))
 		.dependsOn(gameEngine)
-		.settings(commonSettings: _*)
-		.settings(sbtassembly.Plugin.assemblySettings: _*)
 		.settings(Revolver.settings)
 		.settings(
 			libraryDependencies ++= Seq(h2database, logback, akka, liftWebkit, jetty, squeryl, scalatest),
-			jarName in assembly := "pointsgame.jar",
+			assemblyJarName in assembly := "pointsgame.jar",
 			webappDirectorySetting,
 			fork in Test := true,
-			Revolver.reStart <<= Revolver.reStart dependsOn (fullOptJS in(scalajsModule, Compile, fullOptJS)),
+			reStart <<= reStart dependsOn (fullOptJS in(scalajsModule, Compile, fullOptJS)),
 			// Revolver.enableDebugging(port = 5005, suspend = false),
 			assembly <<= assembly dependsOn (test in Test)
 		)

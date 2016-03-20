@@ -1,5 +1,5 @@
-addSbtPlugin("io.spray" % "sbt-revolver" % "0.7.2") // ~re-start
+addSbtPlugin("io.spray" % "sbt-revolver" % "0.8.0") // ~re-start
 
-addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.11.2") // assembly
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.2") // assembly
 
-addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.5")
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.8")
