@@ -1,5 +1,5 @@
 
-version in ThisBuild := "1.0"
+version in ThisBuild := "0.1-SNAPSHOT"
 scalaVersion in ThisBuild := "2.11.8"
 scalacOptions in ThisBuild ++= Seq("-unchecked", "-feature", "-deprecation", "-Xfuture", "-Xcheckinit")
 
@@ -45,7 +45,7 @@ lazy val scalajsModule = project.in(file("./modules/scalajs"))
 
 lazy val humanityVerifier = project.in(file("./modules/humanity-verifier"))
 		.settings(libraryDependencies ++= Seq(utest))
-		.settings(testFrameworks += new TestFramework("utest.runner.JvmFramework"))
+		.settings(testFrameworks += new TestFramework("utest.runner.Framework"))
 
 lazy val gameEngine = project.in(file("./modules/game-engine"))
 		.settings(libraryDependencies ++= Seq(scalatest))

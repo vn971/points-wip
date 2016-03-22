@@ -1,10 +1,10 @@
 #### IDE-s
 /.cache
-/.classpath
 /.ensime
 /.idea*
-/.project
-/.settings
+.classpath
+.project
+.settings
 
 #### sbt output
 target/

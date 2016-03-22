@@ -29,7 +29,7 @@ object Helper {
 			if ((bitmask & pow) != 0) {
 				result = (result * basePowI) % mod
 			}
-			bitmask = bitmask * 2
+			bitmask = bitmask << 1
 			basePowI = (basePowI * basePowI) % mod
 		}
 		result
