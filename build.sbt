@@ -18,7 +18,6 @@ lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-M6"
 lazy val jetty = "org.eclipse.jetty" % "jetty-webapp" % "9.1.3.v20140225"
 lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.6-RC4"
 lazy val scalatest = "org.scalatest" %% "scalatest" % "2.1.6" % Test
-lazy val utest = "com.lihaoyi" %% "utest" % "0.3.1" % Test
 lazy val sjsDomLib = "0.8.2"
 
 
@@ -42,10 +41,6 @@ lazy val scalajsModule = project.in(file("./modules/scalajs"))
 		.settings(libraryDependencies += "com.lihaoyi" %%% "scalarx" % "0.2.8")
 		.settings(libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.5.3")
 		.settings(libraryDependencies += "org.scala-js" %%% "scalajs-dom" % sjsDomLib)
-
-lazy val humanityVerifier = project.in(file("./modules/humanity-verifier"))
-		.settings(libraryDependencies ++= Seq(utest))
-		.settings(testFrameworks += new TestFramework("utest.runner.Framework"))
 
 lazy val gameEngine = project.in(file("./modules/game-engine"))
 		.settings(libraryDependencies ++= Seq(scalatest))
