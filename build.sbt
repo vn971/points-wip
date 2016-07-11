@@ -3,9 +3,7 @@ version in ThisBuild := "0.1-SNAPSHOT"
 scalaVersion in ThisBuild := "2.11.8"
 scalacOptions in ThisBuild ++= Seq("-unchecked", "-feature", "-deprecation", "-Xfuture", "-Xcheckinit")
 
-resolvers ++= Seq(
-	"Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
-)
+resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
 
 // uncomment if you don't want to use your internet connection for SNAPSHOT updates:
 // offline:=true
@@ -33,7 +31,7 @@ lazy val webappDirectorySetting =
 		}
 	}
 
-lazy val root = project.in(file("."))
+lazy val pointsgame = project.in(file("."))
 	.aggregate(liftServer)
 
 lazy val scalajsModule = project.in(file("./modules/scalajs"))

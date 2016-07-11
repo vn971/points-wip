@@ -3,7 +3,6 @@ package net.pointsgame.db
 import java.sql.Timestamp
 import net.pointsgame.db.Pointsgame._
 import net.pointsgame.ratings.RatingConstants.defaultRating
-import net.pointsgame.ratings.RatingUserInfo
 import org.squeryl.{KeyedEntity, Schema}
 
 

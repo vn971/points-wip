@@ -12,6 +12,5 @@
 	<logger name="net.liftweb" level="warn"/>
 
 	<logger name="net.pointsgame.db" level="debug"/>
-	<logger name="net.pointsgame.ratings.ZagramImporter$" level="debug"/>
 
 </configuration>
