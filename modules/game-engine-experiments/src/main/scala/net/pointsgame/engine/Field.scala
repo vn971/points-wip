@@ -12,7 +12,7 @@ protected class Field(val sizeX: Int, val sizeY: Int) {
 	 */
 	private val e = new Dot(-1, -1, -1)
 
-	private val field = immutable.Vector.
+	private val field = Array.
 			tabulate[Dot](sizeX * sizeY) { i =>
 		new Dot(i, i % sizeX, i / sizeX)
 	}

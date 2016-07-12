@@ -78,7 +78,7 @@ class AiEngine(val sizeX: Int, val sizeY: Int) {
 			if (group.size == 2) {
 				surroundings_? = true
 			}
-			for (firstBranchIndex <- 0 until group.size;
+			for (firstBranchIndex <- group.indices;
 					 secondBranchIndex <- firstBranchIndex until group.size) {
 				val first = group(firstBranchIndex)
 				val second = group(secondBranchIndex)

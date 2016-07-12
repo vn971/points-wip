@@ -10,7 +10,7 @@
 		<parameters>
 			<parameter name="header"><![CDATA[// This project is licensed under AGPL v3. See license.txt for more details.
 				//
-				// Copyright: Vasya Novikov 2013-2014.]]></parameter>
+				// Copyright: Vasya Novikov 2013-2016.]]></parameter>
 		</parameters>
 	</check>
 	<check level="warning" class="org.scalastyle.scalariform.SpacesAfterPlusChecker" enabled="true"></check>
