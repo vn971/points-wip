@@ -7,7 +7,7 @@ import org.squeryl.dsl._
 import scala.language.implicitConversions
 
 
-object Pointsgame extends PrimitiveTypeMode {
+object PointsgameSqlTypes extends PrimitiveTypeMode {
 
 	implicit val jodaTimeTEF = new NonPrimitiveJdbcMapper[Timestamp, DateTime, TTimestamp](timestampTEF, this) {
 		def convertFromJdbc(t: Timestamp) = new DateTime(t)
@@ -28,7 +28,7 @@ object Pointsgame extends PrimitiveTypeMode {
 	/**
 	 * the following are necessary for the AST lifting
 	 */
-	implicit def jodaTimeToTE(s: DateTime) = jodaTimeTEF.create(s)
+	implicit def jodaTimeToTE(s: DateTime): TypedExpression[DateTime, TTimestamp] = jodaTimeTEF.create(s)
 
 	implicit def optionJodaTimeToTE(s: Option[DateTime]) = optionJodaTimeTEF.create(s)
 

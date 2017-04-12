@@ -19,7 +19,10 @@ lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.8"
 lazy val scalatest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
 lazy val monixVersion = "2.2.4"
 lazy val sjsDomLib = "0.8.2"
-
+lazy val flyway = "org.flywaydb" % "flyway-core" % "4.1.2"
+lazy val scalikejdbc = "org.scalikejdbc" %% "scalikejdbc" % "2.4.2"
+lazy val jodatime = "joda-time" % "joda-time" % "2.9.9"
+lazy val jodaConvert = "org.joda" % "joda-convert" % "1.8.1"
 
 lazy val webappDirectorySetting =
 	resourceGenerators in Compile += task {
@@ -53,6 +56,12 @@ lazy val scalajsModule = project.in(file("./modules/scalajs"))
 		.settings(libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.5.5")
 		.settings(libraryDependencies += "org.scala-js" %%% "scalajs-dom" % sjsDomLib)
 		.settings(jsDependencies += RuntimeDOM)
+
+lazy val databaseModule = project.in(file("./modules/database"))
+	.settings(
+		fork := true,
+		libraryDependencies ++= Seq(flyway, h2database, logback, squeryl, scalatest, jodatime, jodaConvert, scalikejdbc) // quill
+	)
 
 lazy val gameEngine = project.in(file("./modules/game-engine"))
 		.settings(libraryDependencies ++= Seq(scalatest))

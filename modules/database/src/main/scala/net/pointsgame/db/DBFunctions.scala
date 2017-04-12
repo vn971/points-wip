@@ -1,10 +1,9 @@
 package net.pointsgame.db
 
-import net.liftweb.common.Loggable
 import net.pointsgame.db.DBLibrary._
-import net.pointsgame.db.Pointsgame._
+import net.pointsgame.db.PointsgameSqlTypes._
 
-object DBFunctions extends Loggable {
+object DBFunctions {
 
 	def findGames(user: Long): List[DBGame] =
 		transaction {

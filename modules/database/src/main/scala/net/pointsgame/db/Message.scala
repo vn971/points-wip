@@ -1,8 +1,7 @@
 package net.pointsgame.db
 
 import java.sql.Timestamp
-import net.liftweb.common.Loggable
-import net.pointsgame.db.Pointsgame._
+import net.pointsgame.db.PointsgameSqlTypes._
 import org.joda.time.{DateTimeZone, DateTime}
 import org.squeryl.annotations._
 
@@ -16,7 +15,7 @@ case class Message(
 	@Column(length = Message.CHARACTER_LIMIT) content: String,
 	ip: String,
 	time: Timestamp = DBLibrary.now()
-	) extends Loggable {
+	) {
 
 	def shortTime = {
 		val dt = new DateTime(time.getTime).withZone(DateTimeZone.forID("Europe/Moscow"))
@@ -24,7 +23,7 @@ case class Message(
 	}
 }
 
-object MessageFunctions extends Loggable {
+object MessageFunctions {
 	final val KEEP_COUNT = 50
 
 	import net.pointsgame.db.DBLibrary.messages
@@ -44,7 +43,8 @@ object MessageFunctions extends Loggable {
 				messages.insert(m)
 			}
 		} catch {
-			case e: Exception => logger.info(s"adding message $m failed")
+			case e: Exception =>
+//				logger.info(s"adding message $m failed")
 		}
 	}
 }

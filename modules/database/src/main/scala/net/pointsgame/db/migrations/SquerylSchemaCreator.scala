@@ -1,21 +1,20 @@
-package net.pointsgame.db
+package net.pointsgame.db.migrations
 
-import net.liftweb.common.Loggable
-import net.liftweb.http.LiftRules
-import net.liftweb.util.Props
-import net.pointsgame.db.Pointsgame._
+import net.pointsgame.db.DBLibrary
+import net.pointsgame.db.PointsgameSqlTypes._
 import org.h2.jdbcx.JdbcConnectionPool
-import org.squeryl.{ Session, SessionFactory }
+import org.slf4j.{Logger, LoggerFactory}
+import org.squeryl._
 
-object DBSetUp extends Loggable {
+class SquerylSchemaCreator(jdbcAddress: String) {
 
-	def setUp(
-			jdbcAddress: String = Props.get("jdbc.address").openOrThrowException("")
-			): Unit = {
+	val logger: Logger = LoggerFactory.getLogger(this.getClass)
+
+	def initialize(): Unit = {
 		logger.info(s"opening DB by address $jdbcAddress")
 		val connPool = JdbcConnectionPool.create(jdbcAddress, "", "")
 
-		LiftRules.unloadHooks.append { () =>
+		sys.addShutdownHook {
 			logger.info("disposing connection pool")
 			connPool.dispose()
 		}
@@ -33,7 +32,7 @@ object DBSetUp extends Loggable {
 			}
 		} catch {
 			case e: Exception =>
-				logger.warn("DB population failed. (Tables were already defined?)")
+			logger.warn("DB population failed. Were tables already defined?", e)
 		}
 	}
 
@@ -44,9 +43,8 @@ object DBSetUp extends Loggable {
 			}
 		} catch {
 			case e: Exception =>
-				logger.warn("DB drop failed.")
+				logger.warn("DB drop failed.", e)
 		}
 	}
 
 }
-

@@ -1,15 +1,14 @@
 package net.pointsgame.db
 
 import java.sql.Timestamp
-import net.pointsgame.db.Pointsgame._
-import net.pointsgame.ratings.RatingConstants.defaultRating
+import net.pointsgame.db.PointsgameSqlTypes._
 import org.squeryl.{KeyedEntity, Schema}
 
 
 case class DBUser(
 		id: Long = 0L,
 		name: String,
-		rating: Long = defaultRating,
+		rating: Long = 0,
 		ratingPrecision: Double = 1.0
 		)
 		extends KeyedEntity[Long] {
