@@ -22,11 +22,11 @@ lazy val sjsDomLib = "0.8.2"
 
 
 lazy val webappDirectorySetting =
-	resourceGenerators in Compile <+= (resourceManaged, baseDirectory) map { (managedBase, base) =>
-		val webappBase = base / "src" / "main" / "webapp"
+	resourceGenerators in Compile += task {
+		val webappBase = sourceDirectory.value / "main" / "webapp"
+		val managedBase = resourceManaged.value
 		for {
-			(from, to) <- webappBase ** "*" pair rebase(webappBase, managedBase /
-					"main" / "webapp")
+			(from, to) <- webappBase ** "*" pair rebase(webappBase, managedBase / "main" / "webapp")
 		} yield {
 			Sync.copy(from, to)
 			to
@@ -69,9 +69,9 @@ lazy val liftServer = project.in(file("./modules/lift-server/"))
 			assemblyJarName in assembly := "pointsgame.jar",
 			webappDirectorySetting,
 			fork in Test := true,
-			reStart <<= reStart dependsOn (fullOptJS in(scalajsModule, Compile, fullOptJS)),
+			reStart := (reStart dependsOn (fullOptJS in(scalajsModule, Compile, fullOptJS)).toTask).evaluated,
 			// Revolver.enableDebugging(port = 5005, suspend = false),
-			assembly <<= assembly dependsOn (test in Test)
+			assembly := (assembly dependsOn (test in Test)).value
 		)
 
 (crossTarget in(scalajsModule, Compile, fullOptJS)) := (sourceDirectory in(liftServer, Compile)).value / "webapp" / "js"
