@@ -40,11 +40,9 @@ lazy val changes = crossProject.in(file("./modules/changes"))
 		// .jvmSettings(Revolver.enableDebugging(port = 5005, suspend = true))
 		.jvmSettings(libraryDependencies += "org.monifu" %% "monifu" % monixVersion)
 		.jvmSettings(libraryDependencies += "org.scala-js" %% "scalajs-stubs" % scalaJSVersion % "provided")
-		.jvmSettings(libraryDependencies += "net.pointsgame" %% "scala-macro-log" % "0.9.4")
 		.jvmSettings(fork := true)
 		.jsSettings(libraryDependencies += "org.scala-js" %%% "scalajs-dom" % sjsDomLib)
 		.jsSettings(libraryDependencies += "org.monifu" %%% "monifu" % monixVersion)
-		.jsSettings(libraryDependencies += "net.pointsgame" %%% "scala-macro-log" % "0.9.4")
 lazy val changesJVM: Project = changes.jvm
 lazy val changesJS: Project = changes.js
 
