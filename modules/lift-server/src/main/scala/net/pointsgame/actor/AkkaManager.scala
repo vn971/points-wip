@@ -18,7 +18,7 @@ object AkkaManager extends Loggable {
 		}
 
 	def shutdown(): Unit = {
-		system.shutdown()
+		system.terminate()
 	}
 }
 

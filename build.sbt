@@ -1,6 +1,6 @@
 
 version in ThisBuild := "0.1-SNAPSHOT"
-scalaVersion in ThisBuild := "2.11.8"
+scalaVersion in ThisBuild := "2.11.10"
 scalacOptions in ThisBuild ++= Seq("-unchecked", "-feature", "-deprecation", "-Xfuture", "-Xcheckinit")
 
 resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
@@ -8,15 +8,15 @@ resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositori
 // uncomment if you don't want to use your internet connection for SNAPSHOT updates:
 // offline:=true
 
-lazy val h2database = "com.h2database" % "h2" % "1.4.178"
-lazy val logback = "ch.qos.logback" % "logback-classic" % "1.1.2"
-lazy val akka = "com.typesafe.akka" %% "akka-actor" % "2.3.2"
+lazy val logback = "ch.qos.logback" % "logback-classic" % "1.2.3"
+lazy val h2database = "com.h2database" % "h2" % "1.4.194"
+lazy val akka = "com.typesafe.akka" %% "akka-actor" % "2.4.17"
 //lazy val fobo = "net.liftmodules" %% "fobo_3.0" % "1.2"
 //lazy val liftCommon = "net.liftweb" %% "lift-common" % "3.0-RC3"
-lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-RC3"
-lazy val jetty = "org.eclipse.jetty" % "jetty-webapp" % "9.1.3.v20140225"
-lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.6-RC4"
-lazy val scalatest = "org.scalatest" %% "scalatest" % "2.1.6" % Test
+lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0.1"
+lazy val jetty = "org.eclipse.jetty" % "jetty-webapp" % "9.4.3.v20170317"
+lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.8"
+lazy val scalatest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
 lazy val monixVersion = "1.2"
 lazy val sjsDomLib = "0.8.2"
 
@@ -43,6 +43,7 @@ lazy val changes = crossProject.in(file("./modules/changes"))
 		.jvmSettings(fork := true)
 		.jsSettings(libraryDependencies += "org.scala-js" %%% "scalajs-dom" % sjsDomLib)
 		.jsSettings(libraryDependencies += "org.monifu" %%% "monifu" % monixVersion)
+		.jsSettings(jsDependencies += RuntimeDOM)
 lazy val changesJVM: Project = changes.jvm
 lazy val changesJS: Project = changes.js
 
@@ -51,6 +52,7 @@ lazy val scalajsModule = project.in(file("./modules/scalajs"))
 		.settings(libraryDependencies += "com.lihaoyi" %%% "scalarx" % "0.2.8")
 		.settings(libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.5.3")
 		.settings(libraryDependencies += "org.scala-js" %%% "scalajs-dom" % sjsDomLib)
+		.settings(jsDependencies += RuntimeDOM)
 
 lazy val gameEngine = project.in(file("./modules/game-engine"))
 		.settings(libraryDependencies ++= Seq(scalatest))

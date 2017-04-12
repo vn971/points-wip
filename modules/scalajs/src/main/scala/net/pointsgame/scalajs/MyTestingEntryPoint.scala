@@ -10,8 +10,9 @@ import scalatags.generic.Bundle
 
 @JSExportTopLevel("MyTestingEntryPoint")
 object MyTestingEntryPoint {
-//	val field1 = JsPaper.bindGrid(25, 20, "field1")
-//	val field2 = JsPaper.bindGrid(15, 10, "field2")
-	dom.document.getElementById("increaseFieldSize").asInstanceOf[js.Dynamic].onmousedown = increaseFieldSize
-	dom.document.getElementById("decreaseFieldSize").asInstanceOf[js.Dynamic].onmousedown = decreaseFieldSize
+	val increaseButton = dom.document.getElementById("increaseFieldSize")
+	if (increaseButton != null) increaseButton.asInstanceOf[js.Dynamic].onmousedown = increaseFieldSize
+
+	val decreaseButton = dom.document.getElementById("decreaseFieldSize")
+	if (decreaseButton != null) decreaseButton.asInstanceOf[js.Dynamic].onmousedown = decreaseFieldSize
 }
