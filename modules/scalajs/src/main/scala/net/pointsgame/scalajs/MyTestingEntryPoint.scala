@@ -8,7 +8,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation._
 import scalatags.generic.Bundle
 
-@JSExport
+@JSExportTopLevel("MyTestingEntryPoint")
 object MyTestingEntryPoint {
 //	val field1 = JsPaper.bindGrid(25, 20, "field1")
 //	val field2 = JsPaper.bindGrid(15, 10, "field2")

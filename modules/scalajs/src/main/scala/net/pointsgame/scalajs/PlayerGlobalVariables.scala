@@ -1,9 +1,7 @@
 package net.pointsgame.scalajs
 
 import org.scalajs.dom.MouseEvent
-import scala.scalajs.js.annotation._
 
-@JSExport
 object PlayerGlobalVariables {
 
 	val gridSquareSize = rx.Var(20)
@@ -13,14 +11,12 @@ object PlayerGlobalVariables {
 	def coord(c: Int) = (offset() + c * gridSquareSize()).toString
 
 
-	@JSExport
 	val increaseFieldSize = { (e: MouseEvent) =>
 		println("increasing field size start")
 		gridSquareSize() = gridSquareSize() + 1
 		println("increasing field size end")
 	}
 
-	@JSExport
 	val decreaseFieldSize = { (e: MouseEvent) =>
 		println("decreasing field size start")
 		gridSquareSize() = gridSquareSize() - 1

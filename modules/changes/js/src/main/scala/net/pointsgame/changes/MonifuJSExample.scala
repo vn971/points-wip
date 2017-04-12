@@ -2,7 +2,6 @@ package net.pointsgame.changes
 
 import monifu.concurrent.Implicits.globalScheduler
 import monifu.reactive._
-import net.pointsgame.macros.SimpleLog._
 import scala.scalajs.js.JSApp
 import scala.scalajs.js.annotation.JSExport
 
@@ -19,7 +18,7 @@ object MonifuJSExample extends JSApp {
 	@JSExport
 	def main(): Unit = {
 		EventGenerator.subscription.subscribe { userConnected ⇒
-			log(userConnected)
+			println("userConnected: " + userConnected)
 			Ack.Continue
 		}
 	}

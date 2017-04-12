@@ -17,7 +17,7 @@ lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0-RC3"
 lazy val jetty = "org.eclipse.jetty" % "jetty-webapp" % "9.1.3.v20140225"
 lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.6-RC4"
 lazy val scalatest = "org.scalatest" %% "scalatest" % "2.1.6" % Test
-lazy val monixVersion = "1.1"
+lazy val monixVersion = "1.2"
 lazy val sjsDomLib = "0.8.2"
 
 
@@ -69,9 +69,10 @@ lazy val liftServer = project.in(file("./modules/lift-server/"))
 			assemblyJarName in assembly := "pointsgame.jar",
 			webappDirectorySetting,
 			fork in Test := true,
-			reStart := (reStart dependsOn (fullOptJS in(scalajsModule, Compile, fullOptJS)).toTask).evaluated,
+			reStart := (reStart dependsOn (fastOptJS in(scalajsModule, Compile, fastOptJS)).toTask).evaluated,
 			// Revolver.enableDebugging(port = 5005, suspend = false),
 			assembly := (assembly dependsOn (test in Test)).value
 		)
 
 (crossTarget in(scalajsModule, Compile, fullOptJS)) := (sourceDirectory in(liftServer, Compile)).value / "webapp" / "js"
+(crossTarget in(scalajsModule, Compile, fastOptJS)) := (sourceDirectory in(liftServer, Compile)).value / "webapp" / "js"

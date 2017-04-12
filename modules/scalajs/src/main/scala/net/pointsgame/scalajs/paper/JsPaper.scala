@@ -4,11 +4,11 @@ import net.pointsgame.scalajs.PlayerGlobalVariables._
 import net.pointsgame.scalajs.Utils._
 import org.scalajs.dom
 import org.scalajs.dom._
-import scala.scalajs.js.annotation.JSExport
+import scala.scalajs.js.annotation._
 import scalatags.Text.all._
 import scalatags.Text.svgTags.{line, svg}
 
-@JSExport
+@JSExportTopLevel("JsPaper")
 object JsPaper {
 
 	@JSExport

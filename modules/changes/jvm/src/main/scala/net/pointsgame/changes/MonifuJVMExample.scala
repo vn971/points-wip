@@ -4,7 +4,6 @@ import java.util.concurrent.{Executors, ThreadFactory}
 import monifu.concurrent.schedulers.AsyncScheduler
 import monifu.concurrent.{Scheduler, UncaughtExceptionReporter}
 import monifu.reactive._
-import net.pointsgame.macros.SimpleLog._
 import scala.concurrent.duration._
 import scala.concurrent.forkjoin.ForkJoinPool
 import scala.concurrent.{ExecutionContext, Future}
@@ -16,7 +15,7 @@ object MonifuJVMExample {
 	import net.pointsgame.changes.Helper._
 
 	def main(args: Array[String]): Unit = {
-		log("starting JVM main class")
+		println("starting JVM main class")
 
 		// hack to create the non-daemon thread in monifu scheduler,
 		// for the application not to exit early.
@@ -28,29 +27,29 @@ object MonifuJVMExample {
 
 	def simpleSubscriptionTest(): Unit = {
 		EventGenerator.subscription.subscribe { userConnected ⇒
-			log("simple subscription test", userConnected)
+			println(s"simple subscription test, userConnected: $userConnected")
 			Ack.Continue
 		}
 	}
 
 	def smartSubscriptionTest(): Unit = {
-		log(Thread.activeCount())
+		println("Thread.activeCount() 1 : " + Thread.activeCount())
 		val player: Observer[UserConnected] = new Observer[UserConnected] {
 			override def onError(ex: Throwable): Unit = {
 				ex.printStackTrace()
 			}
 			override def onComplete(): Unit = {
-				log("subscription ended, yo-ho!")
-				log(Thread.activeCount())
+				println("subscription ended, yo-ho!")
+				println("Thread.activeCount() 2 : " + Thread.activeCount())
 
 				// TODO: how to properly shut down the scheduler?
 				scheduler.prepare()
 				Helper.nonDaemonExecutor.shutdown()
 			}
 			override def onNext(uc: UserConnected): Future[Ack] = {
-				log(Thread.activeCount())
-				log("received event", uc)
-				log(Thread.currentThread().isDaemon)
+				println("Thread.activeCount() 3 : " + Thread.activeCount())
+				println(s"received event uc: $uc")
+				println("Thread.currentThread().isDaemon: " + Thread.currentThread().isDaemon)
 				Future.successful(Ack.Continue)
 			}
 		}
