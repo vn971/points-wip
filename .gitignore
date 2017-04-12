@@ -16,3 +16,6 @@ local-dev-database*
 *opt.js.map
 *-jsdeps.js
 *-jsdeps.min.js
+
+#### npm output
+/node_modules/

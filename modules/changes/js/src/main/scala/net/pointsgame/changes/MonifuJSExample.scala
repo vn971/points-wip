@@ -1,7 +1,7 @@
 package net.pointsgame.changes
 
-import monifu.concurrent.Implicits.globalScheduler
-import monifu.reactive._
+import monix.execution.Scheduler.Implicits.global
+import monix.execution.Ack
 import scala.scalajs.js.JSApp
 import scala.scalajs.js.annotation.JSExport
 

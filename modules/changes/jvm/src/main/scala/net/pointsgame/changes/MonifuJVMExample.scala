@@ -1,15 +1,12 @@
 package net.pointsgame.changes
 
 import java.util.concurrent.{Executors, ThreadFactory}
-import monifu.concurrent.schedulers.AsyncScheduler
-import monifu.concurrent.{Scheduler, UncaughtExceptionReporter}
-import monifu.reactive._
+import monix.execution.schedulers.AsyncScheduler
+import monix.execution.{Ack, ExecutionModel, Scheduler, UncaughtExceptionReporter}
+import monix.reactive.Observer
 import scala.concurrent.duration._
 import scala.concurrent.forkjoin.ForkJoinPool
 import scala.concurrent.{ExecutionContext, Future}
-//import monix.execution.Scheduler.Implicits.global
-//import monix.reactive._
-//import monix.execution._
 
 object MonifuJVMExample {
 	import net.pointsgame.changes.Helper._
@@ -73,6 +70,7 @@ object Helper {
 	implicit val scheduler: Scheduler = AsyncScheduler(
 		nonDaemonExecutor,
 		ec,
-		UncaughtExceptionReporter.LogExceptionsToStandardErr
+		UncaughtExceptionReporter.LogExceptionsToStandardErr,
+		ExecutionModel.Default
 	)
 }

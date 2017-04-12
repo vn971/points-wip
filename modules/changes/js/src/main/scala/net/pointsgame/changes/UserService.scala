@@ -1,6 +1,6 @@
 package net.pointsgame.changes
 
-import monifu.reactive.Observable
+import monix.reactive.Observable
 import net.pointsgame.changes.Model._
 
 trait UserService {

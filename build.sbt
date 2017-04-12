@@ -17,7 +17,7 @@ lazy val liftWebkit = "net.liftweb" %% "lift-webkit" % "3.0.1"
 lazy val jetty = "org.eclipse.jetty" % "jetty-webapp" % "9.4.3.v20170317"
 lazy val squeryl = "org.squeryl" %% "squeryl" % "0.9.8"
 lazy val scalatest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
-lazy val monixVersion = "1.2"
+lazy val monixVersion = "2.2.4"
 lazy val sjsDomLib = "0.8.2"
 
 
@@ -38,19 +38,19 @@ lazy val pointsgame = project.in(file("."))
 
 lazy val changes = crossProject.in(file("./modules/changes"))
 		// .jvmSettings(Revolver.enableDebugging(port = 5005, suspend = true))
-		.jvmSettings(libraryDependencies += "org.monifu" %% "monifu" % monixVersion)
+		.jvmSettings(libraryDependencies += "io.monix" %% "monix" % monixVersion)
 		.jvmSettings(libraryDependencies += "org.scala-js" %% "scalajs-stubs" % scalaJSVersion % "provided")
 		.jvmSettings(fork := true)
 		.jsSettings(libraryDependencies += "org.scala-js" %%% "scalajs-dom" % sjsDomLib)
-		.jsSettings(libraryDependencies += "org.monifu" %%% "monifu" % monixVersion)
+		.jsSettings(libraryDependencies += "io.monix" %%% "monix" % monixVersion)
 		.jsSettings(jsDependencies += RuntimeDOM)
 lazy val changesJVM: Project = changes.jvm
 lazy val changesJS: Project = changes.js
 
 lazy val scalajsModule = project.in(file("./modules/scalajs"))
 		.enablePlugins(ScalaJSPlugin)
-		.settings(libraryDependencies += "com.lihaoyi" %%% "scalarx" % "0.2.8")
-		.settings(libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.5.3")
+		.settings(libraryDependencies += "com.lihaoyi" %%% "scalarx" % "0.2.9")
+		.settings(libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.5.5")
 		.settings(libraryDependencies += "org.scala-js" %%% "scalajs-dom" % sjsDomLib)
 		.settings(jsDependencies += RuntimeDOM)
 

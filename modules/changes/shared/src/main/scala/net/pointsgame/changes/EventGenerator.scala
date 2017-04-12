@@ -1,6 +1,6 @@
 package net.pointsgame.changes
 
-import monifu.reactive._
+import monix.reactive.Observable
 import scala.concurrent.duration._
 
 object EventGenerator {
